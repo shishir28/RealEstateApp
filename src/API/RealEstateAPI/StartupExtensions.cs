@@ -1,0 +1,81 @@
+﻿using Microsoft.EntityFrameworkCore;
+using RealEstate.Application;
+using RealEstate.Persistence;
+
+namespace RealEstateAPI
+{
+    public static class StartupExtensions
+    {
+        public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddApplicationServices();
+            builder.Services.AddPersistenceServices(builder.Configuration);
+            builder.Services.AddHealthChecks();
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddControllers();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("Open", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+            });
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            AddSwagger(builder.Services);
+            return builder.Build();
+        }
+
+        public static WebApplication ConfigurePipeline(this WebApplication app)
+        {
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Real.API v1"));
+            }
+
+            app.UseHttpsRedirection();
+            //app.UseRouting();
+            app.UseAuthentication();
+            // app.UseCustomExceptionHandler();
+            app.UseCors("Open");
+            app.UseAuthorization();
+            app.MapControllers();
+            return app;
+        }
+
+        private static void AddSwagger(IServiceCollection services)
+        {
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new() { Title = "RealEstateAPI", Version = "v1" });
+            });
+        }
+
+        public static async Task ResetDatabaseAsync(this WebApplication app)
+        {
+            using var scope = app.Services.CreateScope();
+            try
+            {
+                var services = scope.ServiceProvider;
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                var dbContext = services.GetRequiredService<RealEstateDbContext>();
+                if (dbContext != null)
+                {
+                    logger.LogInformation("Dropping database associated with context {DbContextName}", nameof(RealEstateDbContext));
+                    await dbContext.Database.EnsureDeletedAsync();
+                    logger.LogInformation("Dropped database associated with context {DbContextName}", nameof(RealEstateDbContext));
+                    await dbContext.Database.MigrateAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+                logger.LogError(ex, "An error occurred while dropping the database");
+            }
+        }
+    }
+}
