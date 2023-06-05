@@ -4,7 +4,7 @@ namespace RealEstate.Domain.Entities
 {
     public class Bookmark: AuditableEntity
     {
-        public int Id { get; set; }
+        public Guid BookmarkId { get; set; }
         public bool Status { get; set; }
         public int User_Id { get; set; }
         public Guid PropertyId { get; set; }
