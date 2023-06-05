@@ -7,7 +7,7 @@ namespace RealEstate.Domain.Entities
         public int Id { get; set; }
         public bool Status { get; set; }
         public int User_Id { get; set; }
-        public int PropertyId { get; set; }
+        public Guid PropertyId { get; set; }
         [JsonIgnore]
         public Property Property { get; set; }
     }

@@ -5,7 +5,7 @@ namespace RealEstate.Domain.Entities
 {
     public class Property: AuditableEntity
     {
-        public int Id { get; set; }
+        public Guid PropertyId { get; set; }
         public string Name { get; set; }
         public string Detail { get; set; }
         public string Address { get; set; }

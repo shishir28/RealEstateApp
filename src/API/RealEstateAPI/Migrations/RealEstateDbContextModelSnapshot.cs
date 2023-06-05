@@ -42,8 +42,8 @@ namespace RealEstateAPI.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("PropertyId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -62,7 +62,7 @@ namespace RealEstateAPI.Migrations
                         {
                             Id = 1,
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PropertyId = 1,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9f"),
                             Status = true,
                             User_Id = 1
                         });
@@ -131,11 +131,9 @@ namespace RealEstateAPI.Migrations
 
             modelBuilder.Entity("RealEstate.Domain.Entities.Property", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("PropertyId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -177,7 +175,7 @@ namespace RealEstateAPI.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("PropertyId");
 
                     b.HasIndex("CategoryId");
 
@@ -188,7 +186,7 @@ namespace RealEstateAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9f"),
                             Address = "Ciel Tower, Dubai Marina, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9b"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -201,7 +199,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 2,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b10"),
                             Address = "Dorrabay, Dubai Marina, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9b"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -214,7 +212,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 3,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b11"),
                             Address = "Dorrabay, Dubai Marina, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9b"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -227,7 +225,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 4,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b12"),
                             Address = "TFG Marina , Dubai Marina, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9c"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -240,7 +238,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 5,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b13"),
                             Address = "The Palm Tower, Palm Jumeirah, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9c"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -253,7 +251,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 6,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b14"),
                             Address = "Dorrabay, Dubai Marina, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9d"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -266,7 +264,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 7,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b15"),
                             Address = "Attessa, Marina Promenade, Dubai Marina, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9d"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -279,7 +277,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 8,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b16"),
                             Address = "Tower B1, Vida Hotel, The Hills, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9d"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -292,7 +290,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 9,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b17"),
                             Address = "Vida Residence 2, Vida Residence, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9d"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -305,7 +303,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 10,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b18"),
                             Address = "Artesia C, Artesia, DAMAC Hills, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9e"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -318,7 +316,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 11,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b19"),
                             Address = "Damac Maison The Distinction, Downtown Dubai, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9e"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -331,7 +329,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 12,
+                            PropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b20"),
                             Address = "Dorrabay, Dubai Marina, Dubai",
                             CategoryId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9e"),
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
