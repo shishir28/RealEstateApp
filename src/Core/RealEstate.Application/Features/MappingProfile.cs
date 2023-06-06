@@ -1,6 +1,7 @@
 using AutoMapper;
+
 using RealEstate.Application.Features.Categories.Queries.GetCategoriesList;
-using RealEstate.Application.Features.Properties.Queries.GetTrendingPropertiesList;
+using RealEstate.Application.Features.Properties.Queries;
 
 namespace RealEstate.Application.Features.Profiles
 {
@@ -12,5 +13,4 @@ namespace RealEstate.Application.Features.Profiles
             CreateMap<Domain.Entities.Property, PropertyListVm>().ReverseMap();
         }
     }
-
 }

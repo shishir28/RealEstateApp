@@ -12,5 +12,8 @@ namespace RealEstate.Persistence.Repositories
 
         public Task<List<Property>> GetTrendingProperties() =>
             _dbContext.Properties.Where(p => p.IsTrending).ToListAsync();
+
+        public Task<List<Property>> GetPropertiesByCategoryId(Guid categoryId) =>
+            _dbContext.Properties.Where(p => p.CategoryId == categoryId).ToListAsync();
     }
 }

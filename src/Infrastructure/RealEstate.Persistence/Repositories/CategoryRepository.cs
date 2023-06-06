@@ -10,10 +10,9 @@ namespace RealEstate.Persistence.Repositories
         {
         }
 
-        public Task<List<Category>> GetCategoriesWithEvents(bool includePassedEvents)
+        public Task<List<Category>> GetAllCategoriesAsync()
         {
             var allCategories = _dbContext.Categories;
-
             return allCategories.ToListAsync();
         }
     }

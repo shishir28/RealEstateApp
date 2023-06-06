@@ -1,6 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using RealEstate.Application.Features.Properties.Queries;
 using RealEstate.Application.Features.Properties.Queries.GetTrendingPropertiesList;
+using RealEstate.Application.Features.Properties.Queries.GetPropertiesListByCategory;
+
 namespace RealEstateAPI.Controllers;
 
 [ApiController]
@@ -17,6 +20,15 @@ public class PropertyController : ControllerBase
     public async Task<ActionResult<List<PropertyListVm>>> GetTrendingProperties()
     {
         var dtos = await _mediator.Send(new GetTrendingPropertiesListQuery());
+        return Ok(dtos);
+    }
+
+    [HttpGet("PropertyList")]
+    // [Authorize]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult<List<PropertyListVm>>> GetProperties(Guid categoryId)
+    {
+        var dtos = await _mediator.Send(new GetPropertiesListByCategoryQuery() { CategoryId = categoryId });
         return Ok(dtos);
     }
 }

@@ -1,4 +1,4 @@
-namespace RealEstate.Application.Features.Properties.Queries.GetTrendingPropertiesList
+namespace RealEstate.Application.Features.Properties.Queries
 {
     public class PropertyListVm
     {
