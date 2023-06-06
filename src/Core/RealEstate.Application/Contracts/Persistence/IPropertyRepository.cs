@@ -6,5 +6,6 @@ namespace RealEstate.Application.Contracts.Persistence
     {
         Task<List<Property>> GetTrendingProperties();
         Task<List<Property>> GetPropertiesByCategoryId(Guid categoryId);
+        Task<List<Property>> GetPropertiesForAddress(string address);
     }
 }

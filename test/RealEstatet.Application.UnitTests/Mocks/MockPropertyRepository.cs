@@ -38,6 +38,12 @@ public class MockPropertyRepository
             {
                 return properties.Where(x => x.CategoryId == categoryId).ToList();
             });
+        mockPropertyRepository.Setup(repo => repo.GetPropertiesForAddress(It.IsAny<string>())).ReturnsAsync(
+       (string address) =>
+       {
+           return properties.Where(x => x.Address.Contains(address)).ToList();
+       });
+
         // mockPropertyRepository.Setup(repo => repo.AddAsync(It.IsAny<Property>())).ReturnsAsync(
         //     (Property property) =>
         //     {

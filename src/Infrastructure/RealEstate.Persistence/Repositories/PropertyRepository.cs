@@ -15,5 +15,8 @@ namespace RealEstate.Persistence.Repositories
 
         public Task<List<Property>> GetPropertiesByCategoryId(Guid categoryId) =>
             _dbContext.Properties.Where(p => p.CategoryId == categoryId).ToListAsync();
+
+        public Task<List<Property>> GetPropertiesForAddress(string address) =>
+            _dbContext.Properties.Where(p => p.Address.Contains(address)).ToListAsync();
     }
 }
