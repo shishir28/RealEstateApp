@@ -1,4 +1,4 @@
-using RealEstate.Domain.Common;
+﻿using RealEstate.Domain.Common;
 using System.Text.Json.Serialization;
 
 namespace RealEstate.Domain.Entities
@@ -15,7 +15,7 @@ namespace RealEstate.Domain.Entities
         public Guid CategoryId { get; set; }
         [JsonIgnore]
         public Category Category { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         [JsonIgnore]
         public User User { get; set; }
 

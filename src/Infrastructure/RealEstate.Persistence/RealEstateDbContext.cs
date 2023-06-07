@@ -1,4 +1,4 @@
-using RealEstate.Domain.Entities;
+﻿using RealEstate.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Domain.Common;
 

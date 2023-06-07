@@ -1,4 +1,3 @@
-using AutoMapper;
 using RealEstate.Application.Contracts.Persistence;
 using RealEstate.Domain.Entities;
 using Moq;

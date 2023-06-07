@@ -1,7 +1,6 @@
 using AutoMapper;
 using RealEstate.Application.Contracts.Persistence;
 using MediatR;
-using RealEstate.Application.Features.Properties.Queries.GetTrendingPropertiesList;
 namespace RealEstate.Application.Features.Properties.Queries.GetTrendingPropertiesList;
 
 public class GetTrendingPropertiesListQueryHandler : IRequestHandler<GetTrendingPropertiesListQuery, List<PropertyListVm>>

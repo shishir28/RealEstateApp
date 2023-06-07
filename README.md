@@ -1,2 +1,2 @@
 # RealEstateApp
-MAUI based App For Dummy Real Estate app 
+MAUI based Dummy App For Real Estate space

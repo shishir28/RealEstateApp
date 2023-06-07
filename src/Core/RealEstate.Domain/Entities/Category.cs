@@ -1,5 +1,4 @@
 using RealEstate.Domain.Common;
-using System.Text.Json.Serialization;
 namespace RealEstate.Domain.Entities
 {
     public class Category : AuditableEntity

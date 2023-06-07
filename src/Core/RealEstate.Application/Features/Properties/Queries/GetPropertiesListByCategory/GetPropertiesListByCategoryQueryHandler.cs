@@ -1,7 +1,6 @@
 using AutoMapper;
 using RealEstate.Application.Contracts.Persistence;
 using MediatR;
-using RealEstate.Application.Features.Properties.Queries.GetPropertiesListByCategory;
 namespace RealEstate.Application.Features.Properties.Queries.GetPropertiesListByCategory;
 
 public class GetPropertiesListByCategoryQueryHandler : IRequestHandler<GetPropertiesListByCategoryQuery, List<PropertyListVm>>

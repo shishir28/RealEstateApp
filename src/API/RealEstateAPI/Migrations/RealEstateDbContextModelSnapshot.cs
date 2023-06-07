@@ -170,8 +170,8 @@ namespace RealEstateAPI.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("PropertyId");
 
@@ -193,7 +193,7 @@ namespace RealEstateAPI.Migrations
                             IsTrending = false,
                             Name = "Jumeirah Metro City",
                             Price = 800000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         },
                         new
                         {
@@ -206,7 +206,7 @@ namespace RealEstateAPI.Migrations
                             IsTrending = true,
                             Name = "Stuning Marina",
                             Price = 700000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         },
                         new
                         {
@@ -219,7 +219,7 @@ namespace RealEstateAPI.Migrations
                             IsTrending = false,
                             Name = "Distress Deal",
                             Price = 200000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         },
                         new
                         {
@@ -232,7 +232,7 @@ namespace RealEstateAPI.Migrations
                             IsTrending = false,
                             Name = "Panoramic Views",
                             Price = 900000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         },
                         new
                         {
@@ -245,7 +245,7 @@ namespace RealEstateAPI.Migrations
                             IsTrending = true,
                             Name = "Palm View",
                             Price = 750000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         },
                         new
                         {
@@ -258,7 +258,7 @@ namespace RealEstateAPI.Migrations
                             IsTrending = false,
                             Name = "Full Marina View",
                             Price = 200000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         },
                         new
                         {
@@ -271,7 +271,7 @@ namespace RealEstateAPI.Migrations
                             IsTrending = true,
                             Name = "Avant Tower",
                             Price = 300000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         },
                         new
                         {
@@ -284,7 +284,7 @@ namespace RealEstateAPI.Migrations
                             IsTrending = false,
                             Name = "Distress Deal",
                             Price = 400000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         },
                         new
                         {
@@ -297,7 +297,7 @@ namespace RealEstateAPI.Migrations
                             IsTrending = false,
                             Name = "Sea View",
                             Price = 880000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         },
                         new
                         {
@@ -310,7 +310,7 @@ namespace RealEstateAPI.Migrations
                             IsTrending = false,
                             Name = "Jenkins Height",
                             Price = 5500000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         },
                         new
                         {
@@ -323,7 +323,7 @@ namespace RealEstateAPI.Migrations
                             IsTrending = false,
                             Name = "Takishi Penhouse",
                             Price = 800000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         },
                         new
                         {
@@ -336,17 +336,15 @@ namespace RealEstateAPI.Migrations
                             IsTrending = true,
                             Name = "Blue World",
                             Price = 650000.0,
-                            UserId = 1
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159")
                         });
                 });
 
             modelBuilder.Entity("RealEstate.Domain.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -361,17 +359,16 @@ namespace RealEstateAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c159"),
                             Email = "andrew@email.com",
                             Name = "Andrew",
                             Password = "And@1234",
@@ -379,7 +376,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 2,
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c259"),
                             Email = "bob@email.com",
                             Name = "Bob",
                             Password = "Bb@1234",
@@ -387,7 +384,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 3,
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c359"),
                             Email = "john@email.com",
                             Name = "John",
                             Password = "Jn@1234",
@@ -395,7 +392,7 @@ namespace RealEstateAPI.Migrations
                         },
                         new
                         {
-                            Id = 4,
+                            UserId = new Guid("8399c62e-d0b4-49bc-a8c6-0a7a0446c459"),
                             Email = "chris@email.com",
                             Name = "Chris",
                             Password = "Crs@1234",
