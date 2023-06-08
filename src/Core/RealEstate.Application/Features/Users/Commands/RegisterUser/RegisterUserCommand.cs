@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace RealEstate.Application.Features.Users.Command.RegisterUser
+namespace RealEstate.Application.Features.Users.Commands.RegisterUser
 {
     public class RegisterUserCommand : IRequest<Guid>
     {
@@ -8,6 +8,6 @@ namespace RealEstate.Application.Features.Users.Command.RegisterUser
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string Name { get; set; }
-    
+
     }
 }

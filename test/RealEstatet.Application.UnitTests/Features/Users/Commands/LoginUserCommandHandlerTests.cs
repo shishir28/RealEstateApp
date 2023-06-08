@@ -3,9 +3,9 @@ using RealEstate.Application.Contracts.Persistence;
 using AutoMapper;
 using Shouldly;
 using RealEstate.Application.UnitTests.Mocks;
-using RealEstate.Application.Features.Users.Command.LoginUser;
+using RealEstate.Application.Features.Users.Commands.LoginUser;
 using RealEstate.Domain.Entities;
-namespace RealEstate.Application.UnitTests.Features.Users.LoginUser.Command;
+namespace RealEstate.Application.UnitTests.Features.Users.Commands;
 
 public class LoginUserCommandHandlerTests
 {

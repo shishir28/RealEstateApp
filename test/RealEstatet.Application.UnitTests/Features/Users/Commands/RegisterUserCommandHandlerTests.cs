@@ -3,9 +3,9 @@ using RealEstate.Application.Contracts.Persistence;
 using AutoMapper;
 using Shouldly;
 using RealEstate.Application.UnitTests.Mocks;
-using RealEstate.Application.Features.Users.Command.RegisterUser;
+using RealEstate.Application.Features.Users.Commands.RegisterUser;
 
-namespace RealEstate.Application.UnitTests.Features.Users.RegisterUser.Command;
+namespace RealEstate.Application.UnitTests.Features.Users.Commands;
 
 public class RegisterUserCommandHandlerTests
 {

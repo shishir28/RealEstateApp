@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace RealEstate.Application.Features.Users.Command.RegisterUser
+namespace RealEstate.Application.Features.Users.Commands.RegisterUser
 {
     public class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
     {

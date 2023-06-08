@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using RealEstate.Application.Features.Users.Command.RegisterUser;
-using RealEstate.Application.Features.Users.Command.LoginUser;
+using RealEstate.Application.Features.Users.Commands.RegisterUser;
+using RealEstate.Application.Features.Users.Commands.LoginUser;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;

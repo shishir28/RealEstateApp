@@ -4,7 +4,7 @@ using RealEstate.Application.Contracts.Persistence;
 using RealEstate.Application.Exceptions;
 using RealEstate.Domain.Entities;
 
-namespace RealEstate.Application.Features.Users.Command.LoginUser
+namespace RealEstate.Application.Features.Users.Commands.LoginUser
 {
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, User>
     {

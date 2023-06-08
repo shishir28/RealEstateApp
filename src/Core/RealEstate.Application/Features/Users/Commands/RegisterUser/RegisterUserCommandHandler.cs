@@ -4,7 +4,7 @@ using RealEstate.Application.Contracts.Persistence;
 using RealEstate.Application.Exceptions;
 using RealEstate.Domain.Entities;
 
-namespace RealEstate.Application.Features.Users.Command.RegisterUser
+namespace RealEstate.Application.Features.Users.Commands.RegisterUser
 {
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Guid>
     {
