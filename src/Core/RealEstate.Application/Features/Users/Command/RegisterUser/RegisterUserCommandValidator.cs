@@ -23,7 +23,7 @@ namespace RealEstate.Application.Features.Users.Command.RegisterUser
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
-            
+
             //RuleFor(e => e)
             //.MustAsync(async (e, cancellation) =>
             //{

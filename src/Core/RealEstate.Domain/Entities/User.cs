@@ -11,6 +11,5 @@ namespace RealEstate.Domain.Entities
         public string? Phone { get; set; }
         public string Password { get; set; }
         public ICollection<Property> Properties { get; set; }
-
     }
 }

@@ -14,8 +14,11 @@ services:
     container_name: realestate.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
-      - "ConnectionStrings:RealEstateAPIConnectionString=Server=apidb;Database=RealEstateDB;User Id=sa;Password=Pass@word;Encrypt=false"  
+      - ASPNETCORE_URLS=http://+:80      
+      - "ConnectionStrings:RealEstateAPIConnectionString=Server=apidb;Database=RealEstateDB;User Id=sa;Password=Pass@word;Encrypt=false" 
+      - "JWT:Key=ZdYM000OLlMQG6VVVp1OH7Xarp7gHuw1qvUC5dcGt3SNM"
+      - "JWT:Issuer=http://localhost:8000/"
+      - "JWT:Audience=http://localhost:8000/"
     volumes:
       - ~/.aspnet/https:/https:ro
     restart: on-failure
