@@ -1,6 +1,9 @@
-﻿using MediatR;
+﻿using System.Security.Claims;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Features.Bookmarks.Commands.CreateBookmark;
+using RealEstate.Application.Features.Bookmarks.Commands.DeleteBookmark;
+using RealEstate.Application.Features.Bookmarks.Queries.GetBookmarksList;
 
 namespace RealEstateAPI.Controllers;
 
@@ -13,11 +16,13 @@ public class BookmarkController : ControllerBase
     public BookmarkController(IMediator mediator) =>
         _mediator = mediator;
 
-    [HttpGet]
+    [HttpGet(Name = "GetBookmarks")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public IActionResult Get()
+    public async Task<IActionResult> GetBookmarks()
     {
-        return Ok();
+        var userEmail = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+        var bookmarks = await _mediator.Send(new GetBookmarksListQuery { EmailAddress = userEmail});
+        return Ok(bookmarks);
     }
 
     [HttpPost(Name = "CreateBookmark")]
@@ -26,5 +31,15 @@ public class BookmarkController : ControllerBase
     {
         var id = await _mediator.Send(createBookmarkCommand);
         return Ok(id);
+    }
+
+    [HttpDelete("{id}", Name = "DeleteBookmark")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteBookmark(Guid id)
+    {
+        var userEmail = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+        await _mediator.Send(new DeleteBookmarkCommand { BookmarkId = id, EmailAddress = userEmail});
+        return NoContent();
     }
 }

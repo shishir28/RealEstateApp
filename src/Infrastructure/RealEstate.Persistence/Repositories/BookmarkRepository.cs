@@ -9,5 +9,9 @@ namespace RealEstate.Persistence.Repositories
         public BookmarkRepository(RealEstateDbContext dbContext) : base(dbContext)
         {
         }
+
+        public async Task<IList<Bookmark>> GetActiveBookmarksByUserIdAsync(Guid userId) =>
+             await _dbContext.Bookmarks.Where(b => b.UserId == userId && b.Status).ToListAsync();
+
     }
 }

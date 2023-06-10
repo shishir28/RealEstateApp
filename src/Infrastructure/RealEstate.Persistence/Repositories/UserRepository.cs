@@ -13,7 +13,7 @@ namespace RealEstate.Persistence.Repositories
             await _dbContext.Users.AnyAsync(u => u.Email == email);
 
         public async Task<User> GetUserByEmail(string email) =>
-            await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+            await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
 
     }
 }

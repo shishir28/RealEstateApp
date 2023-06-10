@@ -5,14 +5,14 @@ namespace RealEstate.Persistence
 {
     public static class RealEstateDbContextSeed
     {
-        private static Guid houseGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9b");
-        private static Guid hotelGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9c");
-        private static Guid apartmentGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9d");
-        private static Guid penthouseGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9e");
-        private static Guid firstUserId = new("8399c62e-d0b4-49bc-a8c6-0a7a0446c159");
-        private static Guid secondUserId = new("8399c62e-d0b4-49bc-a8c6-0a7a0446c259");
-        private static Guid thirdUserId = new("8399c62e-d0b4-49bc-a8c6-0a7a0446c359");
-        private static Guid fourthUserId = new("8399c62e-d0b4-49bc-a8c6-0a7a0446c459");
+        private static readonly Guid houseGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9b");
+        private static readonly Guid hotelGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9c");
+        private static readonly Guid apartmentGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9d");
+        private static readonly Guid penthouseGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9e");
+        private static readonly Guid firstUserId = new("8399c62e-d0b4-49bc-a8c6-0a7a0446c159");
+        private static readonly Guid secondUserId = new("8399c62e-d0b4-49bc-a8c6-0a7a0446c259");
+        private static readonly Guid thirdUserId = new("8399c62e-d0b4-49bc-a8c6-0a7a0446c359");
+        private static readonly Guid fourthUserId = new("8399c62e-d0b4-49bc-a8c6-0a7a0446c459");
 
         public static void SeedData(ModelBuilder modelBuilder)
         {

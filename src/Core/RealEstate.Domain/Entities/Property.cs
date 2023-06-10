@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace RealEstate.Domain.Entities
 {
-    public class Property: AuditableEntity
+    public class Property : AuditableEntity
     {
         public Guid PropertyId { get; set; }
         public string Name { get; set; }
@@ -20,7 +20,5 @@ namespace RealEstate.Domain.Entities
         public User User { get; set; }
 
         public ICollection<Bookmark> Bookmarks { get; set; }
-
-
     }
 }

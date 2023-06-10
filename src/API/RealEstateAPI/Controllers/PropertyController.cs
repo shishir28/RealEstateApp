@@ -4,6 +4,7 @@ using RealEstate.Application.Features.Properties.Queries;
 using RealEstate.Application.Features.Properties.Queries.GetTrendingPropertiesList;
 using RealEstate.Application.Features.Properties.Queries.GetPropertiesListByCategory;
 using RealEstate.Application.Features.Properties.Queries.GetPropertiesListByAddress;
+using RealEstate.Application.Features.Properties.Queries.GetPropertyDetail;
 
 namespace RealEstateAPI.Controllers;
 
@@ -39,5 +40,13 @@ public class PropertyController : ControllerBase
     {
         var dtos = await _mediator.Send(new GetPropertiesListByAddressQuery() { Address = address });
         return Ok(dtos);
+    }
+
+    [HttpGet("PropertyDetail")]
+    // [Authorize]
+    public async Task<ActionResult<PropertyDetailVm>> GetPropertyDetail(Guid id)
+    {
+        var dto = await _mediator.Send(new GetPropertyDetailQuery() { PropertyId = id });
+        return Ok(dto);
     }
 }

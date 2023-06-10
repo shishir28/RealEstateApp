@@ -35,6 +35,7 @@ public class MockPropertyRepository
 
         var mockPropertyRepository = new Mock<IPropertyRepository>();
         mockPropertyRepository.Setup(repo => repo.GetTrendingProperties()).ReturnsAsync(properties);
+        mockPropertyRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(properties);
         //GetPropertiesByCategoryId(Guid categoryId)
         mockPropertyRepository.Setup(repo => repo.GetPropertiesByCategoryId(It.IsAny<Guid>())).ReturnsAsync(
             (Guid categoryId) =>
@@ -46,19 +47,6 @@ public class MockPropertyRepository
        {
            return properties.Where(x => x.Address.Contains(address)).ToList();
        });
-
-        // mockPropertyRepository.Setup(repo => repo.AddAsync(It.IsAny<Property>())).ReturnsAsync(
-        //     (Property property) =>
-        //     {
-        //         properties.Add(property);
-        //         return property;
-        //     });
-
-        // mockPropertyRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(
-        //     (Guid propertyId) =>
-        //     {
-        //         return properties.FirstOrDefault(x => x.PropertyId == propertyId);
-        //     });
 
         return mockPropertyRepository.Object;
 

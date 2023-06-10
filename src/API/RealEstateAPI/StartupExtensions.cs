@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using RealEstate.Application;
 using RealEstate.Persistence;
 
@@ -22,6 +25,20 @@ namespace RealEstateAPI
                         .AllowAnyHeader();
                 });
             });
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidAudience = builder.Configuration["JWT:Audience"],
+                    ValidIssuer = builder.Configuration["JWT:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+                };
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             AddSwagger(builder.Services);
             return builder.Build();
@@ -41,6 +58,7 @@ namespace RealEstateAPI
             app.UseAuthentication();
             // app.UseCustomExceptionHandler();
             app.UseCors("Open");
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
             return app;

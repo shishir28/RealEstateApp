@@ -18,5 +18,8 @@ namespace RealEstate.Persistence.Repositories
 
         public Task<List<Property>> GetPropertiesForAddress(string address) =>
             _dbContext.Properties.Where(p => p.Address.Contains(address)).ToListAsync();
+
+        public Task<List<Property>> GetAllAsync() =>
+            _dbContext.Properties.ToListAsync();
     }
 }
