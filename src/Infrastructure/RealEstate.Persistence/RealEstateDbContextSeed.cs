@@ -31,7 +31,7 @@ namespace RealEstate.Persistence
             SeedProperties(modelBuilder);
 
             modelBuilder.Entity<Bookmark>().HasData(
-               new Bookmark { BookmarkId = new System.Guid("a46ab603-903e-4460-9ba7-da5f3f0f9e92"), Status = true, User_Id = 1, PropertyId = new System.Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9f") });
+               new Bookmark { BookmarkId = new System.Guid("a46ab603-903e-4460-9ba7-da5f3f0f9e92"), Status = true, UserId = firstUserId, PropertyId = new System.Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9f") });
         }
 
         private static void SeedProperties(ModelBuilder modelBuilder)

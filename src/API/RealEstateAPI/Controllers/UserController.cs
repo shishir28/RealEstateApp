@@ -21,7 +21,6 @@ public class UserController : ControllerBase
 
     }
 
-
     [HttpPost(Name = "Register")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<Guid>> Register([FromBody] RegisterUserCommand registerUserCommand)

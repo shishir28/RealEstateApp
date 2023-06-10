@@ -17,7 +17,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IPropertyRepository, PropertyRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
-
+        services.AddScoped<IBookmarkRepository, BookmarkRepository>();
         return services;
     }
 }
