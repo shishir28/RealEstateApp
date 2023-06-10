@@ -1,3 +1,5 @@
+﻿using RealEstate.Domain.Entities;
+
 namespace RealEstate.Application.Features.Properties.Queries.GetPropertyDetail
 {
     public class PropertyDetailVm
@@ -9,5 +11,7 @@ namespace RealEstate.Application.Features.Properties.Queries.GetPropertyDetail
         public string ImageUrl { get; set; } = string.Empty;
         public double Price { get; set; }
         public bool IsTrending { get; set; }
+        public string PhoneNumber { get; set; } = string.Empty;
+        public Bookmark Bookmark { get; set; }
     }
 }

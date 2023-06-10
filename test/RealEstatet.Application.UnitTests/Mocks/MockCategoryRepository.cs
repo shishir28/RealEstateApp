@@ -1,4 +1,4 @@
-using RealEstate.Application.Contracts.Persistence;
+﻿using RealEstate.Application.Contracts.Persistence;
 using RealEstate.Domain.Entities;
 using Moq;
 
@@ -8,10 +8,10 @@ public class MockCategoryRepository
 {
     public static ICategoryRepository GetCategoryRepository()
     {
-        var houseGuid = new System.Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9b");
-        var hotelGuid = new System.Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9c");
-        var apartmentGuid = new System.Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9d");
-        var penthouseGuid = new System.Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9e");
+        var houseGuid = Guid.Parse("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9b");
+        var hotelGuid = Guid.Parse("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9c");
+        var apartmentGuid = Guid.Parse("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9d");
+        var penthouseGuid = Guid.Parse("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9e");
 
         var categories = new List<Category>
         {
@@ -23,6 +23,11 @@ public class MockCategoryRepository
 
         var mockCategoryRepository = new Mock<ICategoryRepository>();
         mockCategoryRepository.Setup(repo => repo.GetAllCategoriesAsync()).ReturnsAsync(categories);
+        mockCategoryRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>()))
+        .ReturnsAsync((Guid Id) =>
+        {
+            return categories.SingleOrDefault(x => x.CategoryId == Id);
+        });
         return mockCategoryRepository.Object;
     }
 }

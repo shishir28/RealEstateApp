@@ -8,6 +8,7 @@ public class MockPropertyRepository
 {
     public static IPropertyRepository GetPropertyRepository()
     {
+        var newPropertyId = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b21");
         var houseGuid = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9b");
         var hotelGuid = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9c");
         var apartmentGuid = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9d");
@@ -48,7 +49,18 @@ public class MockPropertyRepository
            return properties.Where(x => x.Address.Contains(address)).ToList();
        });
 
-        return mockPropertyRepository.Object;
+        mockPropertyRepository.Setup(repo => repo.AddAsync(It.IsAny<Property>()))
+       .ReturnsAsync((Property property) =>
+       {
+           property.PropertyId = newPropertyId;
+           return property;
+       });
+        mockPropertyRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>())).ReturnsAsync(
+        (Guid Id) =>
+        {
+            return properties.Where(x => x.PropertyId == Id).FirstOrDefault();
+        });
 
+        return mockPropertyRepository.Object;
     }
 }

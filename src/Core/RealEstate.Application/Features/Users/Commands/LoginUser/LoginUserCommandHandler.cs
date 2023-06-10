@@ -1,7 +1,5 @@
-﻿using FluentValidation.Results;
-using MediatR;
+﻿using MediatR;
 using RealEstate.Application.Contracts.Persistence;
-using RealEstate.Application.Exceptions;
 using RealEstate.Domain.Entities;
 
 namespace RealEstate.Application.Features.Users.Commands.LoginUser

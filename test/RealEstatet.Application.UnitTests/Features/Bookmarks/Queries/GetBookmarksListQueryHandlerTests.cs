@@ -1,4 +1,4 @@
-
+﻿
 using RealEstate.Application.Contracts.Persistence;
 using Shouldly;
 using RealEstate.Application.UnitTests.Mocks;
@@ -23,9 +23,9 @@ public class GetBookmarksListQueryHandlerTests
     [Fact]
     public async Task GetBookmarksListTest()
     {
-        var bookmarkId = new System.Guid("b9f9b9b0-5b9a-4b9c-9c9d-8b9b9b9b9b9b");
-        var userId = new System.Guid("d9f9b9b0-5b9a-4b9c-9c9d-8b9b9b9b9b9b");
-        var houseGuid = new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9f");
+        var bookmarkId = Guid.Parse("b9f9b9b0-5b9a-4b9c-9c9d-8b9b9b9b9b9b");
+        var userId = Guid.Parse("d9f9b9b0-5b9a-4b9c-9c9d-8b9b9b9b9b9b");
+        var houseGuid = Guid.Parse("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9f");
 
         var request = new GetBookmarksListQuery
         {

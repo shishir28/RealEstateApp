@@ -1,4 +1,4 @@
-using RealEstate.Application.Contracts.Persistence;
+﻿using RealEstate.Application.Contracts.Persistence;
 using RealEstate.Domain.Entities;
 using Moq;
 
@@ -8,7 +8,7 @@ public class MockUserRepository
 {
     public static IUserRepository GetUserRepository()
     {
-        var userId = new System.Guid("d9f9b9b0-5b9a-4b9c-9c9d-8b9b9b9b9b9b");
+        var userId = Guid.Parse("d9f9b9b0-5b9a-4b9c-9c9d-8b9b9b9b9b9b");
         var mockUserRepository = new Mock<IUserRepository>();
         mockUserRepository.Setup(repo => repo.DoesUserNameExist(It.IsAny<string>())).ReturnsAsync(false);
         mockUserRepository.Setup(repo => repo.AddAsync(It.IsAny<User>()))

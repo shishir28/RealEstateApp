@@ -13,7 +13,7 @@ public class CreateBookmarkCommandHandlerTests
         _bookmarkRepository = MockBookmarkRepository.GetBookmarkRepository();
 
     [Fact]
-    public async Task CreateBookTest()
+    public async Task CreateBookmarkTest()
     {
         var propertyId = Guid.Parse("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9f");
         var userId = Guid.Parse("8399c62e-d0b4-49bc-a8c6-0a7a0446c459");
