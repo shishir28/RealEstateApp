@@ -36,7 +36,8 @@ namespace RealEstate.Application.Features.Users.Commands.RegisterUser
                 UserId = Guid.NewGuid(),
                 Email = request.Email,
                 Password = request.Password,
-                Name = request.Name
+                Name = request.Name,
+                Phone = request.Phone
             };
             var createdUser = await _userRepository.AddAsync(toBeCreatedUser);
             return createdUser.UserId;

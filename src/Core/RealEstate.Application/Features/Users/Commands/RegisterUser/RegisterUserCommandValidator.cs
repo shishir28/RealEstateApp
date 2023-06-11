@@ -16,10 +16,6 @@ namespace RealEstate.Application.Features.Users.Commands.RegisterUser
                 .NotNull()
                 .MinimumLength(6).WithMessage("{PropertyName} must be at least 6 characters.");
 
-            RuleFor(p => p.ConfirmPassword)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull()
-                .Equal(p => p.Password).WithMessage("{PropertyName} must be equal to password.");
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();

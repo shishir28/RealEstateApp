@@ -21,8 +21,7 @@ public class RegisterUserCommandHandlerTests
         {
             Name = "John Doe",
             Email = "john.doe@gmail.com",
-            Password = "Test0101#",
-            ConfirmPassword = "Test0101#"
+            Password = "Test0101#"
         };
         var handler = new RegisterUserCommandHandler(_userRepository);
         var result = await handler.Handle(request, CancellationToken.None);
