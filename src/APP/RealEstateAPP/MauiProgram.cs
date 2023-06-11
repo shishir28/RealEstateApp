@@ -19,7 +19,7 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
         var services = builder.Services;
-
+        AppStartupExtension.InjectServices(services);
         return builder.Build();
     }
 }

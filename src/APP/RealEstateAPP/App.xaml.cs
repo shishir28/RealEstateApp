@@ -1,12 +1,15 @@
-﻿namespace RealEstateAPP;
+﻿using RealEstateAPP.Pages;
+using RealEstateAPP.Services;
+
+namespace RealEstateAPP;
 
 public partial class App : Application
 {
-    public App()
+    public App(IRestService restService)
     {
         InitializeComponent();
 
-        MainPage = new AppShell();
+        MainPage = new RegisterPage(restService);
     }
 }
 
