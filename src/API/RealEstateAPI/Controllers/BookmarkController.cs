@@ -21,7 +21,7 @@ public class BookmarkController : ControllerBase
     public async Task<IActionResult> GetBookmarks()
     {
         var userEmail = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
-        var bookmarks = await _mediator.Send(new GetBookmarksListQuery { EmailAddress = userEmail});
+        var bookmarks = await _mediator.Send(new GetBookmarksListQuery { EmailAddress = userEmail });
         return Ok(bookmarks);
     }
 
@@ -33,13 +33,13 @@ public class BookmarkController : ControllerBase
         return Ok(id);
     }
 
-    [HttpDelete("{id}", Name = "DeleteBookmark")]
+    [HttpDelete("{bookmarkId}", Name = "DeleteBookmark")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteBookmark(Guid id)
+    public async Task<IActionResult> DeleteBookmark(Guid bookmarkId)
     {
         var userEmail = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
-        await _mediator.Send(new DeleteBookmarkCommand { BookmarkId = id, EmailAddress = userEmail});
+        await _mediator.Send(new DeleteBookmarkCommand { BookmarkId = bookmarkId, EmailAddress = userEmail });
         return NoContent();
     }
 }

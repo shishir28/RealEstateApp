@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Features.Categories.Queries.GetCategoriesList;
 namespace RealEstateAPI.Controllers;
@@ -12,11 +13,12 @@ public class CategoryController : ControllerBase
     public CategoryController(IMediator mediator) =>
         _mediator = mediator;
 
+    [Authorize]
     [HttpGet("all", Name = "GetAllCategories")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<List<CategoryListVm>>> GetAllCategories()
     {
-        var dtos = await _mediator.Send(new GetCategoriesListQuery());
-        return Ok(dtos);
+        var categories = await _mediator.Send(new GetCategoriesListQuery());
+        return Ok(categories);
     }
 }

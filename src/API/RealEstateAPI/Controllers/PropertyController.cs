@@ -49,9 +49,10 @@ public class PropertyController : ControllerBase
     [HttpGet("PropertyDetail")]
     [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<PropertyDetailVm>> GetPropertyDetail(Guid id)
+    public async Task<ActionResult<PropertyDetailVm>> GetPropertyDetail(Guid propertyId)
     {
-        var dto = await _mediator.Send(new GetPropertyDetailQuery() { PropertyId = id });
+        var userEmail = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+        var dto = await _mediator.Send(new GetPropertyDetailQuery() { PropertyId = propertyId, EmailAddress = userEmail });
         return Ok(dto);
     }
 

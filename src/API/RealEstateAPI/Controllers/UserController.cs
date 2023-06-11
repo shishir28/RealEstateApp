@@ -21,7 +21,7 @@ public class UserController : ControllerBase
 
     }
 
-    [HttpPost(Name = "Register")]
+    [HttpPost("Register", Name = "Register")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<Guid>> Register([FromBody] RegisterUserCommand registerUserCommand)
     {
@@ -61,12 +61,4 @@ public class UserController : ControllerBase
             user_name = user.Name
         });
     }
-
 }
-/*
- "JWT": {
-    "Key": "ZdYM000OLlMQG6VVVp1OH7Xarp7gHuw1qvUC5dcGt3SNM",
-    "Issuer": "https://localhost:7022/",
-    "Audience": "https://localhost:7022/"
-  }
-*/
