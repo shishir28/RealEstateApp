@@ -18,9 +18,15 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-        var services = builder.Services;
-        AppStartupExtension.InjectServices(services);
-        return builder.Build();
+        
+        AppStartupExtension.InjectServices(builder.Services);
+        builder.Services.UseResolver();
+
+        var app = builder.Build();
+        return app;
     }
+
+    public static void UseResolver(this IServiceCollection sc) =>
+       Resolver.RegisterServices(sc);
 }
 

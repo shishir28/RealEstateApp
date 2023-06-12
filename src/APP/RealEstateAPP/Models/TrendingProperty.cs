@@ -34,6 +34,7 @@ namespace RealEstateAPP.Models
 
         [JsonPropertyName("bookmarks")]
         public List<object> Bookmarks { get; set; }
+        public string FullImageUrl => String.Format(Constants.RestUrl, ImageUrl);
     }
 
 

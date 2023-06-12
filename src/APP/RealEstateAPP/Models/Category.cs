@@ -12,5 +12,7 @@ namespace RealEstateAPP.Models
 
         [JsonPropertyName("imageUrl")]
         public string ImageUrl { get; set; }
+
+        public string FullImageUrl => String.Format(Constants.RestUrl, ImageUrl);
     }
 }
