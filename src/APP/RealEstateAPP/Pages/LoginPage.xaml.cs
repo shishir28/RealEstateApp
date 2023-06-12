@@ -21,7 +21,7 @@ public partial class LoginPage : ContentPage
         if(result)
         {
             
-            Application.Current.MainPage = new HomePage(); 
+            Application.Current.MainPage = new CustomTabbedPage(); 
         }
         else
         {
