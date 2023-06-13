@@ -45,7 +45,7 @@
         </VerticalStackLayout>
         <VerticalStackLayout Grid.Row="3" Spacing="20">
             <Label Text="Top Picks" FontSize="Large"/>
-            <CollectionView x:Name="cvTopics" HeightRequest="350">
+            <CollectionView x:Name="cvTopPicks" HeightRequest="350" SelectionMode="Single" SelectionChanged="cvTopPicks_SelectionChanged">
              <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
              </CollectionView.ItemsLayout>

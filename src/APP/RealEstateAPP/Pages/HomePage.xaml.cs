@@ -25,16 +25,25 @@ public partial class HomePage : ContentPage
     async void GetTrendingProperties()
     {
         var properties = await _restService.GetTrendingProperties();
-        cvTopics.ItemsSource = properties;
+        cvTopPicks.ItemsSource = properties;
     }
 
     void cvCategories_SelectionChanged(System.Object sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
     {
         var currentCategory = e.CurrentSelection.FirstOrDefault() as Category;
         if (currentCategory == null) return;
-         Navigation.PushAsync(new PropertyListPage(currentCategory.CategoryId, currentCategory.Name));
+
+        Navigation.PushAsync(new PropertyListPage(currentCategory.CategoryId, currentCategory.Name));
 
         ((CollectionView)sender).SelectedItem = null;
     }
-}
 
+    void cvTopPicks_SelectionChanged(System.Object sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
+    {
+        var currentProperty = e.CurrentSelection.FirstOrDefault() as TrendingProperty;
+        if (currentProperty == null) return;
+
+        Navigation.PushModalAsync(new PropertyDetailPage(currentProperty.PropertyId));
+        ((CollectionView)sender).SelectedItem = null;
+    }
+}

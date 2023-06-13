@@ -31,6 +31,8 @@ namespace RealEstateAPP.Models
 
         [JsonPropertyName("bookmark")]
         public Bookmark Bookmark { get; set; }
+
+        public string FullImageUrl => String.Format(Constants.RestUrl, ImageUrl);
     }
 
     public class Bookmark
