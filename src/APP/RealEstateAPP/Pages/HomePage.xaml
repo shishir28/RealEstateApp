@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RealEstateAPP.Pages.HomePage">
+             x:Class="RealEstateAPP.Pages.HomePage"
+             NavigationPage.HasNavigationBar="False">
     <ScrollView>
 
         <Grid Margin="20" RowSpacing="20">
@@ -25,7 +26,7 @@
         </Frame>
         <VerticalStackLayout Grid.Row="2" Spacing="20">
             <Label Text="Categories" FontSize="Large" />
-            <CollectionView x:Name="cvCategories" HeightRequest="50" >
+            <CollectionView x:Name="cvCategories" HeightRequest="50"  SelectionMode="Single" SelectionChanged="cvCategories_SelectionChanged">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20"/>
                 </CollectionView.ItemsLayout>

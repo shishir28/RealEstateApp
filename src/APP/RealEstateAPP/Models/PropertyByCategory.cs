@@ -24,5 +24,7 @@ namespace RealEstateAPP.Models
 
         [JsonPropertyName("isTrending")]
         public bool IsTrending { get; set; }
+
+        public string FullImageUrl => String.Format(Constants.RestUrl, ImageUrl);
     }
 }

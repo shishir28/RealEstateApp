@@ -27,5 +27,14 @@ public partial class HomePage : ContentPage
         var properties = await _restService.GetTrendingProperties();
         cvTopics.ItemsSource = properties;
     }
+
+    void cvCategories_SelectionChanged(System.Object sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
+    {
+        var currentCategory = e.CurrentSelection.FirstOrDefault() as Category;
+        if (currentCategory == null) return;
+         Navigation.PushAsync(new PropertyListPage(currentCategory.CategoryId, currentCategory.Name));
+
+        ((CollectionView)sender).SelectedItem = null;
+    }
 }
 
