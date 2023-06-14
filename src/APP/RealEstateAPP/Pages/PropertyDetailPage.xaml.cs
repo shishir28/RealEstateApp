@@ -7,10 +7,17 @@ public partial class PropertyDetailPage : ContentPage
 {
     private string _phoneNumber;
     private readonly IRestService _restService;
+    
+    private readonly string _propertyId;
+    private bool IsBookmarkEnabled;
+    private  string _bookmarkId;
+
+
     public PropertyDetailPage(string propertyId)
     {
         InitializeComponent();
         _restService = Resolver.Resolve<IRestService>();
+        this._propertyId = propertyId;
         GetPropertyDetail(propertyId);
     }
 
@@ -22,6 +29,13 @@ public partial class PropertyDetailPage : ContentPage
         LblAddress.Text = property.Address;
         ImgProperty.Source = property.FullImageUrl;
         _phoneNumber = property.PhoneNumber;
+        _bookmarkId = property.Bookmark?.BookmarkId;
+
+        IsBookmarkEnabled = (property.Bookmark != null); 
+        if (property.Bookmark == null)
+            ImgBookmarkButton.Source = "bookmark_empty_icon";            
+        else
+            ImgBookmarkButton.Source = property.Bookmark.Status? "bookmark_fill_icon" : "bookmark_empty_icon";
     }
 
     void TapMessage_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
@@ -42,5 +56,39 @@ public partial class PropertyDetailPage : ContentPage
     {
         Navigation.PopModalAsync();
     }
-}
 
+    async void ImgBookmarkButton_Clicked(System.Object sender, System.EventArgs e)
+    {
+        if (IsBookmarkEnabled)
+        {
+            var response = await _restService.DeleteBookmark(this._bookmarkId);
+
+            if(response)
+            {
+                ImgBookmarkButton.Source = "bookmark_empty_icon";
+                IsBookmarkEnabled = false;
+                this._bookmarkId = string.Empty;
+            }
+        }
+        else
+        {
+            var resposne = await _restService.AddBookmark(new AddBookmark
+            {
+                PropertyId = this._propertyId,
+                UserId = Preferences.Get(Constants.CurrentUserId,"")
+            });
+
+            if (resposne)
+            {
+                var bookmarks = await  _restService.GetBookmarkList();
+                this._bookmarkId = bookmarks
+                                    .FirstOrDefault(x => x.PropertyId == this._propertyId)
+                                    .BookmarkId;
+
+                ImgBookmarkButton.Source = "bookmark_fill_icon";
+                IsBookmarkEnabled = true;
+
+            }
+        }
+    }
+}

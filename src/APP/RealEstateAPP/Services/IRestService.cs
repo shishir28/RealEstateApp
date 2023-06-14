@@ -11,7 +11,7 @@ namespace RealEstateAPP.Services
         Task<List<SearchProperty>> FindProperties(string address);
         Task<List<PropertyByCategory>> GetPropertyByCategories(string categoryId);
         Task<PropertyDetail> GetPropertyDetail(string propertyId);
-        Task<List<Bookmark>> GetBookmarkList();
+        Task<List<BookmarkList>> GetBookmarkList();
         Task<bool> AddBookmark(AddBookmark addBookmark);
         Task<bool> DeleteBookmark(string bookmarkId);
     }

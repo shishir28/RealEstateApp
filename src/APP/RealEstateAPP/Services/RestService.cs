@@ -130,7 +130,7 @@ namespace RealEstateAPP.Services
             return property;
         }
 
-        public async Task<List<Bookmark>> GetBookmarkList()
+        public async Task<List<BookmarkList>> GetBookmarkList()
         {
             var uri = new Uri(string.Format(Constants.RestUrl, $"Bookmark"));
             SetCurrentAccessTokenForHttpClient();
@@ -138,7 +138,7 @@ namespace RealEstateAPP.Services
             if (!response.IsSuccessStatusCode) return null;
 
             var result = await response.Content.ReadAsStringAsync();
-            var bookmarks = JsonSerializer.Deserialize<List<Bookmark>>(result, _serializerOptions);
+            var bookmarks = JsonSerializer.Deserialize<List<BookmarkList>>(result, _serializerOptions);
             return bookmarks;
         }
 

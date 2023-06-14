@@ -32,7 +32,7 @@ public class GetPropertyDetailQueryHandler : IRequestHandler<GetPropertyDetailQu
             Price = property.Price,
             ImageUrl = property.ImageUrl,
             PhoneNumber = user.Phone,
-            Bookmark = bookmarks.FirstOrDefault()
+            Bookmark = bookmarks.FirstOrDefault(x=>x.PropertyId == request.PropertyId)
         };
 
         return response;
