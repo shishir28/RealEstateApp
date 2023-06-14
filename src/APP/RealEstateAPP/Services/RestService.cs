@@ -95,7 +95,7 @@ namespace RealEstateAPP.Services
 
         public async Task<List<SearchProperty>> FindProperties(string address)
         {
-            var uri = new Uri(string.Format(Constants.RestUrl, $"SearchProperties?address={address}"));
+            var uri = new Uri(string.Format(Constants.RestUrl, $"Property/SearchProperties?address={address}"));
             SetCurrentAccessTokenForHttpClient();
             var response = await _httpClient.GetAsync(uri);
             if (!response.IsSuccessStatusCode) return null;

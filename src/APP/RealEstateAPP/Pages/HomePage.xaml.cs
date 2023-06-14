@@ -46,4 +46,9 @@ public partial class HomePage : ContentPage
         Navigation.PushModalAsync(new PropertyDetailPage(currentProperty.PropertyId));
         ((CollectionView)sender).SelectedItem = null;
     }
+
+    void TapSearch_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
+    {
+        Navigation.PushModalAsync(new SearchPage());
+    }
 }
