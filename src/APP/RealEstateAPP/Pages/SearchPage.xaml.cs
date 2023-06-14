@@ -23,7 +23,6 @@ public partial class SearchPage : ContentPage
 
         var properties = await _restService.FindProperties(e.NewTextValue);
          CvSearch.ItemsSource = properties; 
-
     }
 
     async void CvSearch_SelectionChanged(System.Object sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
@@ -31,7 +30,7 @@ public partial class SearchPage : ContentPage
         var currentProperty = e.CurrentSelection.FirstOrDefault() as SearchProperty;
         if (currentProperty == null) return;
 
-        Navigation.PushModalAsync(new PropertyDetailPage(currentProperty.PropertyId));
+        await Navigation.PushModalAsync(new PropertyDetailPage(currentProperty.PropertyId));
         ((CollectionView)sender).SelectedItem = null;
     }
 }

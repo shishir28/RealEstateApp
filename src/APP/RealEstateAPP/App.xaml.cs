@@ -5,15 +5,15 @@ namespace RealEstateAPP;
 
 public partial class App : Application
 {
-    public App(IRestService restService)
+    public App()
     {
         InitializeComponent();
         var accessToken = Preferences.Get(Constants.CurrentToken, string.Empty);
+
         if(string.IsNullOrEmpty(accessToken))
-            MainPage = new RegisterPage(restService);
+            MainPage = new RegisterPage();
         else
             MainPage = new CustomTabbedPage();
-
     }
 }
 

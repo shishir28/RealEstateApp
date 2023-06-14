@@ -18,7 +18,6 @@ public class UserController : ControllerBase
     {
         _mediator = mediator;
         _config = config;
-
     }
 
     [HttpPost("Register", Name = "Register")]
@@ -36,9 +35,8 @@ public class UserController : ControllerBase
     {
         var user = await _mediator.Send(loginUserCommand);
         if (user == null)
-        {
             return BadRequest("Invalid Credentials");
-        }
+
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Key"]));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
         var claims = new[]

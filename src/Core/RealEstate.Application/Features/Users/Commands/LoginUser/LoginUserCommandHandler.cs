@@ -7,10 +7,8 @@ namespace RealEstate.Application.Features.Users.Commands.LoginUser
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, User>
     {
         private readonly IUserRepository _userRepository;
-        public LoginUserCommandHandler(IUserRepository userRepository)
-        {
+        public LoginUserCommandHandler(IUserRepository userRepository) =>
             _userRepository = userRepository;
-        }
 
         public async Task<User> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {

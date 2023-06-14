@@ -38,26 +38,21 @@ public partial class PropertyDetailPage : ContentPage
             ImgBookmarkButton.Source = property.Bookmark.Status? "bookmark_fill_icon" : "bookmark_empty_icon";
     }
 
-    void TapMessage_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
-    {
+    void TapMessage_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e) =>
         Sms.ComposeAsync(new SmsMessage
         {
             Recipients = new List<string> { _phoneNumber },
             Body = "Price guide please!"
         });
-    }
 
-    void TapCall_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
-    {
+
+    void TapCall_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e) =>
         PhoneDialer.Open(_phoneNumber);
-    }
 
-    void ImgBackButton_Clicked(System.Object sender, System.EventArgs e)
-    {
+    void ImgBackButton_Clicked(System.Object sender, System.EventArgs e) =>
         Navigation.PopModalAsync();
-    }
 
-    async void ImgBookmarkButton_Clicked(System.Object sender, System.EventArgs e)
+    async void ImgBookmarkButton_Clicked(System.Object sender, System.EventArgs e) 
     {
         if (IsBookmarkEnabled)
         {

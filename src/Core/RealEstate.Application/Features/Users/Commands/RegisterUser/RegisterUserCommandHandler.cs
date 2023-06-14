@@ -9,10 +9,8 @@ namespace RealEstate.Application.Features.Users.Commands.RegisterUser
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Guid>
     {
         private readonly IUserRepository _userRepository;
-        public RegisterUserCommandHandler(IUserRepository userRepository)
-        {
+        public RegisterUserCommandHandler(IUserRepository userRepository) =>
             _userRepository = userRepository;
-        }
 
         public async Task<Guid> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {

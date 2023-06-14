@@ -6,6 +6,5 @@ namespace RealEstate.Application.Features.Bookmarks.Commands.DeleteBookmark
     {
         public Guid BookmarkId { get; set; }
         public string EmailAddress { get; set; }
-
     }
 }

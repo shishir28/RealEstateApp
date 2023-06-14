@@ -7,10 +7,9 @@ namespace RealEstateAPP.Pages;
 public partial class RegisterPage : ContentPage
 {
     private readonly IRestService _restService;
-    public RegisterPage(IRestService restService)
+    public RegisterPage()
     {
-        _restService = restService;
-        
+        _restService = Resolver.Resolve<IRestService>();
         InitializeComponent();
     }
 
@@ -19,24 +18,19 @@ public partial class RegisterPage : ContentPage
         var result = await _restService.RegisterUser(EntFullName.Text,
             EntEmail.Text,
             EntPassword.Text,
-            EntPhone.Text
-            );
+            EntPhone.Text);
 
         if (result)
         {
             await DisplayAlert("Success", "User registered successfully", "Alright");
-            await Navigation.PushModalAsync(new LoginPage(_restService));
-        }
-            
+            await Navigation.PushModalAsync(new LoginPage());
+        }            
         else
         {
             await DisplayAlert("Error", "User registration failed", "Ok");
-        }
-            
+        }            
     }
 
-    async void TapLogin_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
-    {
-        await Navigation.PushModalAsync(new LoginPage(_restService));
-    }
+    async void TapLogin_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e) =>
+        await Navigation.PushModalAsync(new LoginPage());
 }

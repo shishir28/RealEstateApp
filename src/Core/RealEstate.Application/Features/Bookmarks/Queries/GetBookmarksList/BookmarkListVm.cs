@@ -11,9 +11,7 @@ namespace RealEstate.Application.Features.Bookmarks.Queries.GetBookmarksList
         public string Address { get; set; }
         public Guid PropertyId { get; set; }
 
-
         public bool Status { get; set; }
         public Guid UserId { get; set; }
-
     }
 }

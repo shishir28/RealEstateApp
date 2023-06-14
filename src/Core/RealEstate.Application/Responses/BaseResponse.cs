@@ -8,11 +8,8 @@ namespace RealEstate.Application
 
         public BaseResponse() => Success = true;
 
-        public BaseResponse(string message)
-        {
-            Success = true;
-            Message = message;
-        }
+        public BaseResponse(string message) : this(message, true) { } 
+        
 
         public BaseResponse(string message, bool success)
         {

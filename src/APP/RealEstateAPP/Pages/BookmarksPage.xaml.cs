@@ -1,18 +1,12 @@
 ﻿using RealEstateAPP.Models;
 using RealEstateAPP.Services;
 
-
 namespace RealEstateAPP.Pages;
 
 public partial class BookmarksPage : ContentPage
 {
   
     private readonly IRestService _restService;
-
-    private readonly string _propertyId;
-    private bool IsBookmarkEnabled;
-    private string _bookmarkId;
-
 
     public BookmarksPage()
     {
@@ -37,4 +31,3 @@ public partial class BookmarksPage : ContentPage
         ((CollectionView)sender).SelectedItem = null;
     }
 }
-

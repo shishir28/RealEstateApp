@@ -7,9 +7,9 @@ public partial class LoginPage : ContentPage
 {
     private readonly IRestService _restService;
 
-    public LoginPage(IRestService restService)
+    public LoginPage()
     {
-        _restService = restService;
+        _restService = Resolver.Resolve<IRestService>();
         InitializeComponent();
     }
 
@@ -19,20 +19,11 @@ public partial class LoginPage : ContentPage
             EntPassword.Text);
 
         if(result)
-        {
-            
             Application.Current.MainPage = new CustomTabbedPage(); 
-        }
         else
-        {
             await DisplayAlert("", "Sign In failed", "Ok");
-
-        }
     }
 
-    async void TapJoinNow_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
-    {
-        await Navigation.PushModalAsync(new RegisterPage(_restService));
-
-    }
+    async void TapJoinNow_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e) =>
+        await Navigation.PushModalAsync(new RegisterPage());
 }

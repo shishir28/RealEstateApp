@@ -65,7 +65,7 @@ public class PropertyController : ControllerBase
         var userEmail = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
         createPropertyCommand.EmailAddress = userEmail;
         var id = await _mediator.Send(createPropertyCommand);
-        // 200 OK is not correct response type. it should be 201. come to it later
+        // 200 OK is not correct response type. it should be 201. Will come to it later
         return Ok(id);
     }
 }

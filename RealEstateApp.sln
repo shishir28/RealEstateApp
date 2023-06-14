@@ -25,13 +25,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.Domain", "src\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.Persistence", "src\Infrastructure\RealEstate.Persistence\RealEstate.Persistence.csproj", "{BC9EF14D-D1CE-42B0-96CD-6619B40CD981}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstateAPI.Tests", "test\RealEstateAPI.Tests\RealEstateAPI.Tests.csproj", "{44D5A821-34EB-4861-A702-BF41237D5BD0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.API.IntegrationTests", "test\RealEstate.API.IntegrationTests\RealEstate.API.IntegrationTests.csproj", "{44D5A821-34EB-4861-A702-BF41237D5BD0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RealEstateAPI.Tests", "RealEstateAPI.Tests", "{B5E70BD9-ADC0-46DA-998D-58219861C8DA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RealEstate.API.IntegrationTests", "RealEstate.API.IntegrationTests", "{B5E70BD9-ADC0-46DA-998D-58219861C8DA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RealEstate.Application.UnitTests", "RealEstate.Application.UnitTests", "{04368521-EDD8-4542-B4F8-15CA43A3CAC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstatet.Application.UnitTests", "test\RealEstatet.Application.UnitTests\RealEstatet.Application.UnitTests.csproj", "{0938C88D-C5A2-45DC-A8E0-8C77EE3D3057}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealEstate.Application.UnitTests", "test\RealEstate.Application.UnitTests\RealEstate.Application.UnitTests.csproj", "{0938C88D-C5A2-45DC-A8E0-8C77EE3D3057}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RealEstate.Application", "RealEstate.Application", "{B3BF2E9C-29B4-487D-9144-C4C11D456B4A}"
 EndProject

@@ -6,6 +6,5 @@ namespace RealEstate.Application.Exceptions
            : base($"{name} ({key}) is not found")
         {
         }
-
     }
 }
