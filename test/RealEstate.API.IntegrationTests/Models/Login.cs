@@ -1,6 +1,6 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace RealEstateAPP.Models
+namespace RealEstate.API.IntegrationTests.Models
 {
     public class Login
     {

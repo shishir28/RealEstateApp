@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using RealEstate.Application.Contracts.Persistence;
+﻿using RealEstate.Application.Contracts.Persistence;
 using MediatR;
 using RealEstate.Application.Exceptions;
 using RealEstate.Domain.Entities;

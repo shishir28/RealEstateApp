@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using RealEstateAPP.Models;
-using RealEstateAPP.Services;
+﻿using RealEstateAPP.Services;
 
 namespace RealEstateAPP.Pages;
 

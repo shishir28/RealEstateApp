@@ -1,4 +1,4 @@
-using MediatR;
+﻿using MediatR;
 using RealEstate.Application.Contracts.Persistence;
 
 namespace RealEstate.Application.Features.Bookmarks.Queries.GetBookmarksList

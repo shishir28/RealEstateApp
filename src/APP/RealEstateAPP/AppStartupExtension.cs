@@ -1,5 +1,4 @@
 ﻿using RealEstateAPP.Services;
-using Polly;
 using RealEstateAPP.Pages;
 
 namespace RealEstateAPP;

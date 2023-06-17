@@ -1,4 +1,4 @@
-
+﻿
 using RealEstate.Application.Contracts.Persistence;
 using Shouldly;
 using RealEstate.Application.UnitTests.Mocks;
@@ -25,6 +25,6 @@ public class CreateBookmarkCommandHandlerTests
         };
         var handler = new CreateBookmarkCommandHandler(_bookmarkRepository);
         var result = await handler.Handle(request, CancellationToken.None);
-        result.ShouldBeOfType<Guid>();
+        result.Count.ShouldBe(1);
     }
 }

@@ -1,6 +1,5 @@
 
 using RealEstate.Application.Contracts.Persistence;
-using AutoMapper;
 using Shouldly;
 using RealEstate.Application.UnitTests.Mocks;
 using RealEstate.Application.Features.Users.Commands.LoginUser;

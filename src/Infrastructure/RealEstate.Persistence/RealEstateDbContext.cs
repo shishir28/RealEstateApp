@@ -14,12 +14,6 @@ public class RealEstateDbContext : DbContext
     public DbSet<Property> Properties { get; set; }
     public DbSet<Bookmark> Bookmarks { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(RealEstateDbContext).Assembly);
-        RealEstateDbContextSeed.SeedData(modelBuilder);
-    }
-
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
         foreach (var entry in ChangeTracker.Entries<AuditableEntity>())

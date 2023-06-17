@@ -60,6 +60,7 @@ namespace RealEstateAPI
             app.UseCors("Open");
             app.UseAuthentication();
             app.UseAuthorization();
+            app.MapHealthChecks("/healthz");
             app.MapControllers();
             return app;
         }
@@ -86,7 +87,13 @@ namespace RealEstateAPI
                     logger.LogInformation("Dropping database associated with context {DbContextName}", nameof(RealEstateDbContext));
                     // await dbContext.Database.EnsureDeletedAsync();
                     logger.LogInformation("Dropped database associated with context {DbContextName}", nameof(RealEstateDbContext));
-                    await dbContext.Database.MigrateAsync();
+                    // Dont migrate DB if relational . Call to migrate should be avoided for InMemoryDatabase
+                    // 
+                    if(dbContext.Database.IsRelational())
+                    {
+                        await dbContext.Database.MigrateAsync();
+                        new RealEstateDbContextSeed().SeedAsync(dbContext).Wait();
+                    }   
                 }
             }
             catch (Exception ex)

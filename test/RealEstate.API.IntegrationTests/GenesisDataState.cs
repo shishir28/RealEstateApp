@@ -1,8 +1,10 @@
 ﻿using RealEstate.Domain.Entities;
+using RealEstate.Persistence;
 
-namespace RealEstate.Persistence
+namespace RealEstate.API.IntegrationTests
 {
-    public class RealEstateDbContextSeed
+    // as of now it had duplicate data as RealEstateDBContextSeed but over period of time RealEstateDBContextSeed could have more realistic data and hence wants to keep these two class separate
+    internal static class GenesisDataState
     {
         private static readonly Guid houseGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9b");
         private static readonly Guid hotelGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9c");
@@ -13,30 +15,33 @@ namespace RealEstate.Persistence
         private static readonly Guid thirdUserId = new("8399c62e-d0b4-49bc-a8c6-0a7a0446c359");
         private static readonly Guid fourthUserId = new("8399c62e-d0b4-49bc-a8c6-0a7a0446c459");
 
-        public async Task SeedAsync(RealEstateDbContext context)
+        internal static async Task ResetDatabaseState(RealEstateDbContext context)
         {
-            await context.Categories.AddRangeAsync(this.GetCategories());
-            await context.Users.AddRangeAsync(this.GetUsers());
-            await context.Properties.AddRangeAsync(this.GetProperties());
-            await context.Bookmarks.AddRangeAsync(this.GetBookmarks());
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+            await context.Categories.AddRangeAsync(GetCategories());
+            await context.Users.AddRangeAsync(GetUsers());
+            await context.Properties.AddRangeAsync(GetProperties());
+            await context.Bookmarks.AddRangeAsync(GetBookmarks());
+            await context.SaveChangesAsync();
         }
 
-        private IEnumerable<Category> GetCategories() => new Category[]
+        internal static IEnumerable<Category> GetCategories() => new Category[]
             {
                 new Category { CategoryId = houseGuid, Name = "House", ImageUrl = "house.png" },
                 new Category { CategoryId = hotelGuid, Name = "Hotel", ImageUrl = "hotel.png" },
                 new Category { CategoryId = apartmentGuid, Name = "Apartment", ImageUrl = "apartment.png" },
                 new Category { CategoryId = penthouseGuid, Name = "Penthouse", ImageUrl = "penthouse.png" }
             };
-        private IEnumerable<User> GetUsers() => new User[]
+        internal static IEnumerable<User> GetUsers() => new User[]
             {
                 new User { UserId = firstUserId, Name = "Andrew", Email = "andrew@email.com", Password = "And@1234", Phone = "93524682" },
                 new User { UserId = secondUserId, Name = "Bob", Email = "bob@email.com", Password = "Bb@1234", Phone = "93925611" },
                 new User { UserId = thirdUserId, Name = "John", Email = "john@email.com", Password = "Jn@1234", Phone = "93624627" },
                 new User { UserId = fourthUserId, Name = "Chris", Email = "chris@email.com", Password = "Crs@1234", Phone ="93304682" }
             };
-    
-        private IEnumerable<Property> GetProperties() => new Property[]
+
+        internal static IEnumerable<Property> GetProperties() => new Property[]
             {
                new Property { PropertyId = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9f"), Name = "Jumeirah Metro City", ImageUrl = "imagep1.jpg", Price = 800000, IsTrending = false, CategoryId = houseGuid, UserId = firstUserId, Detail = "Allsopp Real Estate are pleased to offer this stunning one bedroom apartment in Emaar's 5242, Dubai Marina.Amazing full marina views, from all rooms, this one bedroom apartment is offered vacant and spread over 696 sq. ft. Perfect for short term holiday lets or as a first home.", Address = "Ciel Tower, Dubai Marina, Dubai" },
                new Property { PropertyId = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b10"), Name = "Stuning Marina", ImageUrl = "imagep2.jpg", Price = 700000, IsTrending = true, CategoryId = houseGuid, UserId = firstUserId, Detail = "Sky golobal Real Estate is pleased to offer this stunning house in Emaar's 5242, Dubai Marina.Amazing full marina views, from all rooms, this one bedroom apartment is offered vacant and spread over 696 sq. ft. Perfect for short term holiday lets or as a first home.", Address = "Dorrabay, Dubai Marina, Dubai" },
@@ -51,7 +56,7 @@ namespace RealEstate.Persistence
                new Property { PropertyId = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b19"), Name = "Takishi Penhouse", ImageUrl = "imagep11.jpg", Price = 800000, IsTrending = false, CategoryId = penthouseGuid, UserId = firstUserId, Detail = "Allsopp Real Estate are pleased to offer this stunning one bedroom apartment in Emaar's 5242, Dubai Marina.Amazing full marina views, from all rooms, this one bedroom apartment is offered vacant and spread over 696 sq. ft. Perfect for short term holiday lets or as a first home.", Address = "Damac Maison The Distinction, Downtown Dubai, Dubai" },
                new Property { PropertyId = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b20"), Name = "Blue World", ImageUrl = "imagep12.jpg", Price = 650000, IsTrending = true, CategoryId = penthouseGuid, UserId = firstUserId, Detail = "Elan Real Estate delighted to present Ciel Tower that means Sky in French, is in Dubai Marina one of the magnificent height of 360 meters and is a breathtaking building that will set a new global milestone as the world's tallest hotel upon completion. The architectural marvel is the newest landmark added to the world-famous skyline of the Marina. Designed by the award-winning London-based architect NORR, Ciel Tower features a stunning exterior, futuristic interiors and a spectacular glass observation deck that provides incredible 360-degree views of Dubai Marina, Palm Jumeirah and the Arab Gulf. ", Address = "Dorrabay, Dubai Marina, Dubai" }
             };
-        private IEnumerable<Bookmark> GetBookmarks() => new Bookmark[]
+        internal static IEnumerable<Bookmark> GetBookmarks() => new Bookmark[]
             {
                 new Bookmark { BookmarkId = new System.Guid("a46ab603-903e-4460-9ba7-da5f3f0f9e92"), Status = true, UserId = firstUserId, PropertyId = new System.Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9f") }
             };

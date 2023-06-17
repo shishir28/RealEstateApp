@@ -1,5 +1,4 @@
-﻿using System;
-namespace RealEstateAPP
+﻿namespace RealEstateAPP
 {
     public static class Resolver
     {

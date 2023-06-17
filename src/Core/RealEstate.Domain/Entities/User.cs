@@ -1,7 +1,4 @@
-﻿
-using RealEstate.Domain.Common;
-
-namespace RealEstate.Domain.Entities
+﻿namespace RealEstate.Domain.Entities
 {
     public class User 
     {
