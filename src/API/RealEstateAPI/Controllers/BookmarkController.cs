@@ -27,10 +27,14 @@ public class BookmarkController : ControllerBase
 
     [HttpPost(Name = "CreateBookmark")]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<IActionResult> CreateBookmark([FromBody] CreateBookmarkCommand createBookmarkCommand)
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<CreateBookmarkCommandResponse>> CreateBookmark([FromBody] CreateBookmarkCommand createBookmarkCommand)
     {
-        var id = await _mediator.Send(createBookmarkCommand);
-        return Ok(id);
+        var response = await _mediator.Send(createBookmarkCommand);
+        if (!response.Success)
+            return new BadRequestResult();
+
+        return Ok(response);
     }
 
     [HttpDelete("{bookmarkId}", Name = "DeleteBookmark")]

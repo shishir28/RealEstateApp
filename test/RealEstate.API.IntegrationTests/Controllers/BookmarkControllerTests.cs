@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using System.Text.Json;
 using RealEstate.API.IntegrationTests.Models;
 using RealEstate.API.IntegrationTests.TestHelpers.Serialization;
@@ -47,21 +48,21 @@ public class BookmarkControllerTests : BaseControllerTests
         bookmarks!.Count.ShouldBe(2);
     }
 
-    //[Fact]
-    //public async Task Post_WithInvalidBookmark_ReturnsBadRequest()
-    //{
-    //    var client = await CreateWebClientForAuthenticatedUser();
-    //    var bookmarkToAdd = new AddBookmark
-    //    {
-    //        PropertyId = "00000000-0000-0000-0000-000000000000",
-    //        UserId = "00000000-0000-0000-0000-000000000000"
-    //    };
+    [Fact]
+    public async Task Post_WithInvalidBookmark_ReturnsBadRequest()
+    {
+        var client = await CreateWebClientForAuthenticatedUser();
+        var bookmarkToAdd = new AddBookmark
+        {
+            PropertyId = "00000000-0000-0000-0000-000000000000",
+            UserId = "00000000-0000-0000-0000-000000000000"
+        };
 
-    //    var json = JsonSerializer.Serialize(bookmarkToAdd, JsonSerializerHelper.DefaultSerializationOptions);
-    //    var content = new StringContent(json, Encoding.UTF8, "application/json");
-    //    var response = await client.PostAsync("/bookmark", content);
-    //    response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
-    //}
+        var json = JsonSerializer.Serialize(bookmarkToAdd, JsonSerializerHelper.DefaultSerializationOptions);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        var response = await client.PostAsync("/bookmark", content);
+        response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
+    }
 
     [Fact]
     public async Task Delete_WithValidBookmark_ReturnsNoContent()

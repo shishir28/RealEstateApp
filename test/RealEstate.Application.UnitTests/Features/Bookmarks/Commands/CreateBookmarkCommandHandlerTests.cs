@@ -8,9 +8,13 @@ namespace RealEstate.Application.UnitTests.Features.Bookmarks.Commands;
 public class CreateBookmarkCommandHandlerTests
 {
     private readonly IBookmarkRepository _bookmarkRepository;
+    private readonly IPropertyRepository _propertyRepository;
 
-    public CreateBookmarkCommandHandlerTests() =>
+    public CreateBookmarkCommandHandlerTests()
+    {
         _bookmarkRepository = MockBookmarkRepository.GetBookmarkRepository();
+        _propertyRepository = MockPropertyRepository.GetPropertyRepository();
+    }
 
     [Fact]
     public async Task CreateBookmarkTest()
@@ -23,8 +27,8 @@ public class CreateBookmarkCommandHandlerTests
             UserId = userId,
             PropertyId = propertyId
         };
-        var handler = new CreateBookmarkCommandHandler(_bookmarkRepository);
+        var handler = new CreateBookmarkCommandHandler(_bookmarkRepository, _propertyRepository);
         var result = await handler.Handle(request, CancellationToken.None);
-        result.Count.ShouldBe(1);
+        result.Success.ShouldBe(true);
     }
 }

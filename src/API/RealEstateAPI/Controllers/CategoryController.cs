@@ -16,6 +16,7 @@ public class CategoryController : ControllerBase
     [Authorize]
     [HttpGet("all", Name = "GetAllCategories")]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ResponseCache(Duration = 300)]
     public async Task<ActionResult<List<CategoryListVm>>> GetAllCategories()
     {
         var categories = await _mediator.Send(new GetCategoriesListQuery());

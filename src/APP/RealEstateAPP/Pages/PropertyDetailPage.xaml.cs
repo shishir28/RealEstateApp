@@ -7,11 +7,10 @@ public partial class PropertyDetailPage : ContentPage
 {
     private string _phoneNumber;
     private readonly IRestService _restService;
-    
+
     private readonly string _propertyId;
     private bool IsBookmarkEnabled;
-    private  string _bookmarkId;
-
+    private string _bookmarkId;
 
     public PropertyDetailPage(string propertyId)
     {
@@ -31,14 +30,14 @@ public partial class PropertyDetailPage : ContentPage
         _phoneNumber = property.PhoneNumber;
         _bookmarkId = property.Bookmark?.BookmarkId;
 
-        IsBookmarkEnabled = (property.Bookmark != null); 
+        IsBookmarkEnabled = (property.Bookmark != null);
         if (property.Bookmark == null)
-            ImgBookmarkButton.Source = "bookmark_empty_icon";            
+            ImgBookmarkButton.Source = "bookmark_empty_icon";
         else
-            ImgBookmarkButton.Source = property.Bookmark.Status? "bookmark_fill_icon" : "bookmark_empty_icon";
+            ImgBookmarkButton.Source = property.Bookmark.Status ? "bookmark_fill_icon" : "bookmark_empty_icon";
     }
 
-    void TapMessage_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e) =>
+    void TapMessage_Tapped(object sender, TappedEventArgs e) =>
         Sms.ComposeAsync(new SmsMessage
         {
             Recipients = new List<string> { _phoneNumber },
@@ -46,19 +45,19 @@ public partial class PropertyDetailPage : ContentPage
         });
 
 
-    void TapCall_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e) =>
+    void TapCall_Tapped(object sender, TappedEventArgs e) =>
         PhoneDialer.Open(_phoneNumber);
 
-    void ImgBackButton_Clicked(System.Object sender, System.EventArgs e) =>
+    void ImgBackButton_Clicked(object sender, EventArgs e) =>
         Navigation.PopModalAsync();
 
-    async void ImgBookmarkButton_Clicked(System.Object sender, System.EventArgs e) 
+    async void ImgBookmarkButton_Clicked(object sender, EventArgs e)
     {
         if (IsBookmarkEnabled)
         {
             var response = await _restService.DeleteBookmark(this._bookmarkId);
 
-            if(response)
+            if (response)
             {
                 ImgBookmarkButton.Source = "bookmark_empty_icon";
                 IsBookmarkEnabled = false;
@@ -70,19 +69,18 @@ public partial class PropertyDetailPage : ContentPage
             var resposne = await _restService.AddBookmark(new AddBookmark
             {
                 PropertyId = this._propertyId,
-                UserId = Preferences.Get(Constants.CurrentUserId,"")
+                UserId = Preferences.Get(Constants.CurrentUserId, "")
             });
 
             if (resposne)
             {
-                var bookmarks = await  _restService.GetBookmarkList();
+                var bookmarks = await _restService.GetBookmarkList();
                 this._bookmarkId = bookmarks
                                     .FirstOrDefault(x => x.PropertyId == this._propertyId)
                                     .BookmarkId;
 
                 ImgBookmarkButton.Source = "bookmark_fill_icon";
                 IsBookmarkEnabled = true;
-
             }
         }
     }
