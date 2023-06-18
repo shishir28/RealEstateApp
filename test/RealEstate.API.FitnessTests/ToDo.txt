@@ -1,0 +1,8 @@
+﻿
+Code Quality
+Resiliency Testing
+Obesrvability Testing
+Performance Testing 
+Compliance Standards 
+Security Code Analysis
+Operability Standards 
