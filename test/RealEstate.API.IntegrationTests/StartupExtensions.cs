@@ -12,9 +12,11 @@ namespace RealEstate.API.IntegrationTests
         internal static void AddPersistenceServices(this IServiceCollection services)
         {
             services.RemoveAll(typeof(DbContextOptions<RealEstateDbContext>));
+            //Each time, we will have unique DB name so that not shared across tests
+            var databaseName = $"RealEstateAPIInMemoryDb-{Guid.NewGuid().ToString()}";
 
             services.AddDbContext<RealEstateDbContext>(options =>
-            options.UseInMemoryDatabase("RealEstateAPIInMemoryDb"));
+                     options.UseInMemoryDatabase(databaseName));
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IPropertyRepository, PropertyRepository>();

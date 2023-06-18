@@ -37,7 +37,7 @@ public class PropertyController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("SearchProperties")]
+    [HttpGet("SearchProperties", Name = "GetSearchProperties")]
     [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<List<PropertyListVm>>> GetSearchProperties(string address)
@@ -46,7 +46,7 @@ public class PropertyController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("PropertyDetail")]
+    [HttpGet("{propertyId}", Name = "GetPropertyDetail")]
     [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<PropertyDetailVm>> GetPropertyDetail(Guid propertyId)
@@ -56,7 +56,7 @@ public class PropertyController : ControllerBase
         return Ok(dto);
     }
 
-    [HttpPost("AddProperty")]
+    [HttpPost(Name = "AddProperty")]
     [Authorize]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status200OK)]

@@ -71,7 +71,7 @@ namespace RealEstateAPP.Services
 
         public async Task<List<Category>> GetCategories()
         {
-            var uri = new Uri(string.Format(Constants.RestUrl, "Category/all"));
+            var uri = new Uri(string.Format(Constants.RestUrl, "category"));
             SetCurrentAccessTokenForHttpClient();
             var response = await _httpClient.GetAsync(uri);
             if (!response.IsSuccessStatusCode) return null;
@@ -83,7 +83,7 @@ namespace RealEstateAPP.Services
 
         public async Task<List<TrendingProperty>> GetTrendingProperties()
         {
-            var uri = new Uri(string.Format(Constants.RestUrl, "Property/TrendingProperties"));
+            var uri = new Uri(string.Format(Constants.RestUrl, "property/trendingproperties"));
             SetCurrentAccessTokenForHttpClient();
             var response = await _httpClient.GetAsync(uri);
             if (!response.IsSuccessStatusCode) return null;
@@ -120,7 +120,7 @@ namespace RealEstateAPP.Services
         public async Task<PropertyDetail> GetPropertyDetail(string propertyId)
         {
             //Property/PropertyDetail?id=d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b20
-            var uri = new Uri(string.Format(Constants.RestUrl, $"Property/PropertyDetail?propertyId={propertyId}"));
+            var uri = new Uri(string.Format(Constants.RestUrl, $"property/{propertyId}"));
             SetCurrentAccessTokenForHttpClient();
             var response = await _httpClient.GetAsync(uri);
             if (!response.IsSuccessStatusCode) return null;
@@ -144,7 +144,7 @@ namespace RealEstateAPP.Services
 
         public async Task<bool> AddBookmark(AddBookmark addBookmark)
         {
-            var uri = new Uri(string.Format(Constants.RestUrl, $"Bookmark"));
+            var uri = new Uri(string.Format(Constants.RestUrl, $"bookmark"));
             SetCurrentAccessTokenForHttpClient();
 
             var json = JsonSerializer.Serialize(addBookmark, _serializerOptions);
