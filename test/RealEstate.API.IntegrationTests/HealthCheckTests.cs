@@ -18,6 +18,5 @@ public class HealthCheckTests : IClassFixture<WebApplicationFactory<Program>>
         var client = _factory.CreateClient();
         var response = await client.GetAsync("/healthz");
         response.EnsureSuccessStatusCode();
-        //Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }

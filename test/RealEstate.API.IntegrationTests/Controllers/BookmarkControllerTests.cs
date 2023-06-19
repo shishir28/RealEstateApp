@@ -24,7 +24,7 @@ public class BookmarkControllerTests : BaseControllerTests
     {
         var client = await CreateWebClientForAuthenticatedUser();
         var defaultUser = GenesisDataState.GetUsers().FirstOrDefault(x => x.Email == "andrew@email.com");
-        var currentProperty = GenesisDataState.GetProperties().FirstOrDefault(x => x.Name == "Stuning Marina");
+        var currentProperty = GenesisDataState.GetProperties().FirstOrDefault(x => x.Name == "Stuning Drift Street");
 
         var bookmarkToAdd = new AddBookmark
         {

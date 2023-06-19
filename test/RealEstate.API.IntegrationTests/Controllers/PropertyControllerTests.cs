@@ -33,7 +33,7 @@ namespace RealEstate.API.IntegrationTests.Controllers
         public async Task Get_All_Properties_For_Search_Returns_Expected_Properties()
         {
             var client = await CreateWebClientForAuthenticatedUser();
-            var address = "The Palm Tower";
+            var address = "Trevi Close";
             var properties = await client.GetJsonAsync<List<SearchProperty>>($"/property/searchProperties?address={address}");
             properties!.Count.ShouldBe(1);
         }
@@ -42,15 +42,15 @@ namespace RealEstate.API.IntegrationTests.Controllers
         public async Task Get_Property_For_Id_Returns_Expected_Property()
         {
             var client = await CreateWebClientForAuthenticatedUser();
-            var expectedProperty = GenesisDataState.GetProperties().FirstOrDefault(x => x.Name == "Stuning Marina");
+            var expectedProperty = GenesisDataState.GetProperties().FirstOrDefault(x => x.Name == "Stuning Drift Street");
             expectedProperty!.PropertyId.ShouldBe(new Guid("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b10"));
             var currentProperty = await client.GetJsonAsync<PropertyDetail>($"/property/{expectedProperty.PropertyId}");
 
             currentProperty!.PropertyId.ShouldBe("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b10");
-            currentProperty.Name.ShouldBe("Stuning Marina");
+            currentProperty.Name.ShouldBe("Stuning Drift Street");
             currentProperty.ImageUrl.ShouldBe("imagep2.jpg");
             currentProperty.Price.ShouldBe(700000);
-            currentProperty.Address.ShouldBe("Dorrabay, Dubai Marina, Dubai");
+            currentProperty.Address.ShouldBe("Drift Street, The Ponds, NSW 2769");
         }
 
         [Fact]
