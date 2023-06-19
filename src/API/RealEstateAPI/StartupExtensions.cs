@@ -89,7 +89,7 @@ namespace RealEstateAPI
                     logger.LogInformation("Dropped database associated with context {DbContextName}", nameof(RealEstateDbContext));
                     // Dont migrate DB if relational . Call to migrate should be avoided for InMemoryDatabase
                     // 
-                    if (dbContext.Database.IsRelational())
+                    if (dbContext.Database.IsSqlServer())
                     {
                         await dbContext.Database.MigrateAsync();
                         new RealEstateDbContextSeed().SeedAsync(dbContext).Wait();

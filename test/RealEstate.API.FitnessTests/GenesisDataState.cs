@@ -1,7 +1,7 @@
 ﻿using RealEstate.Domain.Entities;
 using RealEstate.Persistence;
 
-namespace RealEstate.API.IntegrationTests;
+namespace RealEstate.API.FitnessTests;
 
 // as of now it had duplicate data as RealEstateDBContextSeed but over period of time RealEstateDBContextSeed could have more realistic data and hence wants to keep these two class separate
 internal static class GenesisDataState

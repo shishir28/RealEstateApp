@@ -4,8 +4,9 @@ using RealEstate.Application.Contracts.Persistence;
 using RealEstate.Persistence.Repositories;
 using RealEstate.Persistence;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using RealEstate.API.FitnessTests.Performance;
 
-namespace RealEstate.API.IntegrationTests; 
+namespace RealEstate.API.FitnessTests;
 
 internal static class StartupExtensions
 {
@@ -13,6 +14,8 @@ internal static class StartupExtensions
     {
         services.RemoveAll(typeof(DbContextOptions<RealEstateDbContext>));
         //Each time, we will have unique DB name so that not shared across tests
+        //services.AddDbContext<RealEstateDbContext>(options =>
+        //         options.UseSqlite("Data Source=:memory:"));
         var databaseName = $"RealEstateAPIInMemoryDb-{Guid.NewGuid()}";
 
         services.AddDbContext<RealEstateDbContext>(options =>
@@ -22,5 +25,10 @@ internal static class StartupExtensions
         services.AddScoped<IPropertyRepository, PropertyRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IBookmarkRepository, BookmarkRepository>();
+        services.AddScoped<IPerformanceMesaure, PerformanceMesaure>();
+        Resolver.RegisterServices(services);
     }
+
+
 }
+

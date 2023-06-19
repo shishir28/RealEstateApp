@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace RealEstate.API.IntegrationTests.TestHelpers.Serialization
+namespace RealEstate.API.FitnessTests.TestHelpers.Serialization
 {
     internal static class JsonSerializerHelper
     {

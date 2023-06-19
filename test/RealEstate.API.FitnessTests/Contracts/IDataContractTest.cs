@@ -1,9 +1,8 @@
-﻿namespace RealEstate.API.FitnessTests.Contracts
+﻿namespace RealEstate.API.FitnessTests.Contracts; 
+
+internal interface IDataContractTest
 {
-    internal interface IDataContractTest
-    {
-        bool DoContractsMatch(HttpResponseMessage expectedResponse, HttpResponseMessage actualResponse);
-        bool DoContractsMatch(string expectedResponse, HttpResponseMessage actualResponse);
-        bool DoContractsMatch(string expectedResponse, string actualResponse);
-    }
+    bool DoContractsMatch(HttpResponseMessage expectedResponse, HttpResponseMessage actualResponse);
+    bool DoContractsMatch(string expectedResponse, HttpResponseMessage actualResponse);
+    bool DoContractsMatch(string expectedResponse, string actualResponse);
 }

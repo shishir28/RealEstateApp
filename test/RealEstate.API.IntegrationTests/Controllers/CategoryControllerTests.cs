@@ -13,7 +13,7 @@ public class CategoryControllerTests : BaseControllerTests
     public async Task Get_All_Returns_Expected_Array_Of_Categories()
     {
         var client = await CreateWebClientForAuthenticatedUser();
-        var bookmarks = await client.GetJsonAsync<List<Category>>("/category");
-        bookmarks!.Count.ShouldBe(4);
+        var categories = await client.GetJsonAsync<List<Category>>("/category");
+        categories!.Count.ShouldBe(4);
     }
 }
