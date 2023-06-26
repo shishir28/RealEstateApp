@@ -5,11 +5,10 @@ namespace RealEstate.API.FitnessTests.ContractTests;
 
 public interface IDataContractValidator
 {
-
     bool DoContractsMatchForArray(JSchema expectedSchema, string actualResponse);
     bool DoContractsMatch(JSchema expectedSchema, string actualResponse);
-
 }
+
 /// <summary>
 ///  We can break down this class into multiple classes if it becomes very big
 /// </summary>

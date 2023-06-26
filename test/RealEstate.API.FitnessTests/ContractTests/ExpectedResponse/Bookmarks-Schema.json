@@ -1,0 +1,54 @@
+{
+  "type": "array",
+  "items": {
+    "type": [
+      "object",
+      "null"
+    ],
+    "properties": {
+      "bookmarkId": {
+        "type": "string"
+      },
+      "name": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "price": {
+        "type": "number"
+      },
+      "imageUrl": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "address": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "propertyId": {
+        "type": "string"
+      },
+      "status": {
+        "type": "boolean"
+      },
+      "userId": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "bookmarkId",
+      "name",
+      "price",
+      "imageUrl",
+      "address",
+      "propertyId",
+      "status",
+      "userId"
+    ]
+  }
+}

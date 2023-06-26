@@ -1,0 +1,127 @@
+{
+  "definitions": {
+    "BookmarkListVm": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "BookmarkId": {
+          "type": "string"
+        },
+        "Name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Price": {
+          "type": "number"
+        },
+        "ImageUrl": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "Address": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "PropertyId": {
+          "type": "string"
+        },
+        "Status": {
+          "type": "boolean"
+        },
+        "UserId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "BookmarkId",
+        "Name",
+        "Price",
+        "ImageUrl",
+        "Address",
+        "PropertyId",
+        "Status",
+        "UserId"
+      ]
+    },
+    "PropertyListVm": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "propertyId": {
+          "type": "string"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "detail": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageUrl": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "price": {
+          "type": "number"
+        },
+        "isTrending": {
+          "type": "boolean"
+        },
+        "categoryId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "bookmarks": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/BookmarkListVm"
+          }
+        }
+      },
+      "required": [
+        "propertyId",
+        "name",
+        "detail",
+        "address",
+        "imageUrl",
+        "price",
+        "isTrending",
+        "categoryId",
+        "userId",
+        "bookmarks"
+      ]
+    }
+  },
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/PropertyListVm"
+  }
+}

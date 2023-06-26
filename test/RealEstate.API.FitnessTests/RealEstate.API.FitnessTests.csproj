@@ -34,6 +34,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ContractTests\ExpectedResponse\Bookmarks-Schema.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ContractTests\ExpectedResponse\PropertyDetail-Schema.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="ContractTests\ExpectedResponse\Properties-Schema.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="ContractTests\ExpectedResponse\Categories-Schema.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

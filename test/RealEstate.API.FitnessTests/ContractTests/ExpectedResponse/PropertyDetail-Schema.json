@@ -1,0 +1,337 @@
+{
+  "definitions": {
+    "Bookmark": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "bookmarkId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "propertyId": {
+          "type": "string"
+        },
+        "property": {
+          "$ref": "#/definitions/Property"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lastModified": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "bookmarkId",
+        "status",
+        "userId",
+        "propertyId",
+        "property",
+        "created",
+        "createdBy",
+        "lastModified",
+        "lastModifiedBy"
+      ]
+    },
+    "Category": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "categoryId": {
+          "type": "string"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageUrl": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "properties": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lastModified": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "categoryId",
+        "name",
+        "ImageUrl",
+        "properties",
+        "created",
+        "createdBy",
+        "lastModified",
+        "lastModifiedBy"
+      ]
+    },
+    "Property": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "PropertyId": {
+          "type": "string"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "detail": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageUrl": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "price": {
+          "type": "number"
+        },
+        "isTrending": {
+          "type": "boolean"
+        },
+        "categoryId": {
+          "type": "string"
+        },
+        "category": {
+          "$ref": "#/definitions/Category"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "bookmarks": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Bookmark"
+          }
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lastModified": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "lastModifiedBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "propertyId",
+        "name",
+        "detail",
+        "address",
+        "imageUrl",
+        "price",
+        "isTrending",
+        "categoryId",
+        "category",
+        "userId",
+        "user",
+        "bookmarks",
+        "created",
+        "createdBy",
+        "lastModified",
+        "lastModifiedBy"
+      ]
+    },
+    "User": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "password": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "properties": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        }
+      },
+      "required": [
+        "userId",
+        "name",
+        "email",
+        "phone",
+        "password",
+        "properties"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string"
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "detail": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "address": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "imageUrl": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "price": {
+      "type": "number"
+    },
+    "isTrending": {
+      "type": "boolean"
+    },
+    "phoneNumber": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "bookmark": {
+      "$ref": "#/definitions/Bookmark"
+    }
+  },
+  "required": [
+    "propertyId",
+    "name",
+    "detail",
+    "address",
+    "imageUrl",
+    "price",
+    "isTrending",
+    "phoneNumber",
+    "bookmark"
+  ]
+}
