@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace RealEstate.API.FitnessTests.Performance
+namespace RealEstate.API.FitnessTests.Performance.PerformanceTests
 {
     public interface IPerformanceMesaure
     {

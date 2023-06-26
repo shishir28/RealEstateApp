@@ -85,7 +85,7 @@ namespace RealEstateAPI
                 if (dbContext != null)
                 {
                     logger.LogInformation("Dropping database associated with context {DbContextName}", nameof(RealEstateDbContext));
-                    //await dbContext.Database.EnsureDeletedAsync();
+                    await dbContext.Database.EnsureDeletedAsync();
                     logger.LogInformation("Dropped database associated with context {DbContextName}", nameof(RealEstateDbContext));
                     // Dont migrate DB if relational . Call to migrate should be avoided for InMemoryDatabase
                     // 

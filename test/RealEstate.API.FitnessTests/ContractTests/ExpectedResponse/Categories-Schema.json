@@ -1,0 +1,31 @@
+{
+  "type": "array",
+  "items": {
+    "type": [
+      "object",
+      "null"
+    ],
+    "properties": {
+      "categoryId": {
+        "type": "string"
+      },
+      "name": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "imageUrl": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "required": [
+      "categoryId",
+      "name",
+      "imageUrl"
+    ]
+  }
+}

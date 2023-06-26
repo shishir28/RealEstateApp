@@ -2,14 +2,16 @@
 using RealEstate.API.FitnessTests.Models;
 using RealEstate.API.FitnessTests.TestHelpers;
 
-namespace RealEstate.API.FitnessTests.Performance
+namespace RealEstate.API.FitnessTests.Performance.PerformanceTests
 {
+    /// <summary>
+    ///  We can break down this class into multiple classes if it becomes very big
+    /// </summary>
     public class PerformanceSLATests : BaseRestFixture
     {
         private HttpClient _httpClient;
         public PerformanceSLATests(FitnessWebApplicationFactory<Program> factory) : base(factory) =>
             _httpClient = CreateWebClientForAuthenticatedUser();
-
 
         [Fact]
         public void Category_Get_Calls_Are_In_95_Percentile()

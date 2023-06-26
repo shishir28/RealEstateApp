@@ -4,7 +4,8 @@ using RealEstate.Application.Contracts.Persistence;
 using RealEstate.Persistence.Repositories;
 using RealEstate.Persistence;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using RealEstate.API.FitnessTests.Performance;
+using RealEstate.API.FitnessTests.Performance.PerformanceTests;
+using RealEstate.API.FitnessTests.ContractTests;
 
 namespace RealEstate.API.FitnessTests;
 
@@ -26,9 +27,8 @@ internal static class StartupExtensions
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IBookmarkRepository, BookmarkRepository>();
         services.AddScoped<IPerformanceMesaure, PerformanceMesaure>();
+        services.AddScoped<IDataContractValidator, DataContractValidator>();
         Resolver.RegisterServices(services);
     }
-
-
 }
 
