@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Net;
+using System.Security.Claims;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Features.Bookmarks.Commands.CreateBookmark;
@@ -20,9 +21,18 @@ public class BookmarkController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> GetBookmarks()
     {
-        var userEmail = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
-        var bookmarks = await _mediator.Send(new GetBookmarksListQuery { EmailAddress = userEmail });
-        return Ok(bookmarks);
+        try
+        {
+            var userEmail = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            var bookmarks = await _mediator.Send(new GetBookmarksListQuery { EmailAddress = userEmail });
+            return Ok(bookmarks);
+        }
+        catch (Exception ex)
+        {
+            // Handle the exception, log it, and return an appropriate error response
+            return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+        }
+
     }
 
     [HttpPost(Name = "CreateBookmark")]
