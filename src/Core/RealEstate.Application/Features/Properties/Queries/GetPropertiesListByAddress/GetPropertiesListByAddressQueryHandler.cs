@@ -7,6 +7,7 @@ public class GetPropertiesListByAddressQueryHandler : IRequestHandler<GetPropert
 {
     private readonly IPropertyRepository _propertyRepository;
     private readonly IMapper _mapper;
+
     public GetPropertiesListByAddressQueryHandler(IMapper mapper, IPropertyRepository propertyRepository)
     {
         _mapper = mapper;

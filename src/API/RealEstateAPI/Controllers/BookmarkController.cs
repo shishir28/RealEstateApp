@@ -32,7 +32,6 @@ public class BookmarkController : ControllerBase
             // Handle the exception, log it, and return an appropriate error response
             return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
         }
-
     }
 
     [HttpPost(Name = "CreateBookmark")]

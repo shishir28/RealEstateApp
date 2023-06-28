@@ -19,14 +19,6 @@ namespace RealEstate.Application.Features.Users.Commands.RegisterUser
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull();
-
-            //RuleFor(e => e)
-            //.MustAsync(async (e, cancellation) =>
-            //{
-            //    var user = await e.UserManager.FindByEmailAsync(e.Email);
-            //    return user == null;
-            //}).WithMessage("Email already exists.");
         }
-
     }
 }

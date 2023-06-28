@@ -16,7 +16,6 @@ namespace RealEstate.API.FitnessTests.DependencyConstraintTests
             errorHandlingAndResiliencyScore.ShouldBeGreaterThan(0);
         }
 
-
         private double CalculateErrorHandlingToNumberOfOperationsRatio()
         {
             int totalEndpoints = 0;

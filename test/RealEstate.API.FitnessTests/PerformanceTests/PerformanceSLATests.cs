@@ -42,7 +42,6 @@ namespace RealEstate.API.FitnessTests.Performance.PerformanceTests
             Assert.True(result);
         }
 
-
         [Fact]
         public void Property_ByCategory_Calls_Are_In_95_Percentile()
         {

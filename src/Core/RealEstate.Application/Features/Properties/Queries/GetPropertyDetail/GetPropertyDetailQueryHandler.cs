@@ -17,6 +17,7 @@ public class GetPropertyDetailQueryHandler : IRequestHandler<GetPropertyDetailQu
         _bookmarkRepository = bookmarkRepository;
         _userRepository = userRepository;
     }
+
     public async Task<PropertyDetailVm> Handle(GetPropertyDetailQuery request, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetUserByEmail(request.EmailAddress) ?? throw new NotFoundException(nameof(User), request.EmailAddress);

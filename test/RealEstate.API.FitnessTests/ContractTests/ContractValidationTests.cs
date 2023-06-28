@@ -103,7 +103,6 @@ namespace RealEstate.API.FitnessTests.ContractTests
 
             //Assert
             Assert.True(result);
-
         }
 
         [Fact]
@@ -115,7 +114,6 @@ namespace RealEstate.API.FitnessTests.ContractTests
             var dataContractValidator = Resolver.Resolve<IDataContractValidator>();
             var matchingSchema = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ContractTests/ExpectedResponse/Bookmarks-Schema.json"));
             var expectedSchema = JSchema.Parse(matchingSchema);
-
 
             //Act
             var response = await _httpClient.GetJsonAsync<List<object>>($"/bookmark");

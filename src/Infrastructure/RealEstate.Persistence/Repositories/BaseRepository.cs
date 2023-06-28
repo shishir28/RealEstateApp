@@ -1,4 +1,4 @@
-using RealEstate.Application.Contracts.Persistence;
+﻿using RealEstate.Application.Contracts.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace RealEstate.Persistence.Repositories
@@ -40,7 +40,6 @@ namespace RealEstate.Persistence.Repositories
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
-
 
         public async virtual Task<IReadOnlyList<T>> GetPagedResponseAsync(int page, int size)
         {
