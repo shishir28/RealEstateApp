@@ -11,19 +11,19 @@ public class MockUserRepository
         var userId = Guid.Parse("d9f9b9b0-5b9a-4b9c-9c9d-8b9b9b9b9b9b");
         var mockUserRepository = new Mock<IUserRepository>();
         mockUserRepository.Setup(repo => repo.DoesUserNameExist(It.IsAny<string>())).ReturnsAsync(false);
-        mockUserRepository.Setup(repo => repo.AddAsync(It.IsAny<User>()))
-        .ReturnsAsync((User user) =>
+        mockUserRepository.Setup(repo => repo.AddAsync(It.IsAny<ApplicationUser>()))
+        .ReturnsAsync((ApplicationUser user) =>
         {
-            user.UserId = userId;
+            user.ApplicationUserId = userId;
             return user;
         });
 
         mockUserRepository.Setup(repo => repo.GetUserByEmail(It.IsAny<string>()))
         .ReturnsAsync((string email) =>
         {
-            return new User
+            return new ApplicationUser
             {
-                UserId = userId,
+                ApplicationUserId = userId,
                 Email = email,
                 Password = "Test0101#",
                 Name = "John Doe"

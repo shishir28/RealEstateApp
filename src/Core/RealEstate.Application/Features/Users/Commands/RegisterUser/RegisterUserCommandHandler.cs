@@ -29,16 +29,16 @@ namespace RealEstate.Application.Features.Users.Commands.RegisterUser
                 throw new ValidationException(new ValidationResult(validationErrors));
             }
 
-            var toBeCreatedUser = new User
+            var toBeCreatedUser = new ApplicationUser
             {
-                UserId = Guid.NewGuid(),
+                ApplicationUserId = Guid.NewGuid(),
                 Email = request.Email,
                 Password = request.Password,
                 Name = request.Name,
                 Phone = request.Phone
             };
             var createdUser = await _userRepository.AddAsync(toBeCreatedUser);
-            return createdUser.UserId;
+            return createdUser.ApplicationUserId;
         }
     }
 }

@@ -18,10 +18,10 @@ namespace RealEstate.Application.Features.Bookmarks.Commands.DeleteBookmark
 
         public async Task Handle(DeleteBookmarkCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetUserByEmail(request.EmailAddress) ?? throw new NotFoundException(nameof(User), request.EmailAddress);
+            var user = await _userRepository.GetUserByEmail(request.EmailAddress) ?? throw new NotFoundException(nameof(ApplicationUser), request.EmailAddress);
             var bookmarkToDelete = await _bookmarkRepository.GetByIdAsync(request.BookmarkId) ?? throw new NotFoundException(nameof(Bookmark), request.BookmarkId);
 
-            if (bookmarkToDelete.UserId != user.UserId)
+            if (bookmarkToDelete.UserId != user.ApplicationUserId)
                 throw new BadRequestException("You do not own this bookmark.");
             await _bookmarkRepository.DeleteAsync(bookmarkToDelete);
         }

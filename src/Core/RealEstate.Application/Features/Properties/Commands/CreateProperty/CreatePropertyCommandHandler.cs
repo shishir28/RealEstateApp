@@ -19,7 +19,7 @@ namespace RealEstate.Application.Features.Properties.Commands.CreateProperty
 
         public async Task<Guid> Handle(CreatePropertyCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetUserByEmail(request.EmailAddress) ?? throw new NotFoundException(nameof(User), request.EmailAddress);
+            var user = await _userRepository.GetUserByEmail(request.EmailAddress) ?? throw new NotFoundException(nameof(ApplicationUser), request.EmailAddress);
             var category = await _categoryRepository.GetByIdAsync(request.CategoryId) ?? throw new NotFoundException(nameof(Category), request.CategoryId);
 
             var result = await _propertyRepository.AddAsync(new Property
@@ -30,7 +30,7 @@ namespace RealEstate.Application.Features.Properties.Commands.CreateProperty
                 ImageUrl = request.ImageUrl,
                 Price = request.Price,
                 IsTrending = false,
-                UserId = user.UserId,
+                UserId = user.ApplicationUserId,
                 CategoryId = request.CategoryId
             });
             return result.PropertyId;

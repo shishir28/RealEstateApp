@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RealEstate.Persistence.Repositories
 {
-    public class UserRepository : BaseRepository<User>, IUserRepository
+    public class UserRepository : BaseRepository<ApplicationUser>, IUserRepository
     {
         public UserRepository(RealEstateDbContext dbContext) : base(dbContext)
         {
@@ -13,7 +13,7 @@ namespace RealEstate.Persistence.Repositories
         public async Task<bool> DoesUserNameExist(string email) =>
             await _dbContext.Users.AnyAsync(u => u.Email == email);
 
-        public async Task<User> GetUserByEmail(string email) =>
+        public async Task<ApplicationUser> GetUserByEmail(string email) =>
             await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
 
     }

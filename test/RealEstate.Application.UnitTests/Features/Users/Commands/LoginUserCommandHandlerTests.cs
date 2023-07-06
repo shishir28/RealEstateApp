@@ -23,6 +23,6 @@ public class LoginUserCommandHandlerTests
         };
         var handler = new LoginUserCommandHandler(_userRepository);
         var result = await handler.Handle(request, CancellationToken.None);
-        result.ShouldBeOfType<User>();
+        result.ShouldBeOfType<ApplicationUser>();
     }
 }

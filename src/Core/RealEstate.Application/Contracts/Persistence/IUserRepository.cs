@@ -2,9 +2,9 @@
 
 namespace RealEstate.Application.Contracts.Persistence
 {
-    public interface IUserRepository : IAsyncRepository<User>
+    public interface IUserRepository : IAsyncRepository<ApplicationUser>
     {
         Task<bool> DoesUserNameExist(string email);
-        Task<User> GetUserByEmail(string email);
+        Task<ApplicationUser> GetUserByEmail(string email);
     }
 }

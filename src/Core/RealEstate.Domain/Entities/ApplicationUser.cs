@@ -1,8 +1,10 @@
-﻿namespace RealEstate.Domain.Entities
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+
+namespace RealEstate.Domain.Entities
 {
-    public class User 
+    public class ApplicationUser
     {
-        public Guid UserId { get; set; }
+        public Guid ApplicationUserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string? Phone { get; set; }

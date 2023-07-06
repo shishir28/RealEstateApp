@@ -22,6 +22,32 @@ namespace RealEstateAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("RealEstate.Domain.Entities.ApplicationUser", b =>
+                {
+                    b.Property<Guid>("ApplicationUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ApplicationUserId");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("RealEstate.Domain.Entities.Bookmark", b =>
                 {
                     b.Property<Guid>("BookmarkId")
@@ -142,32 +168,6 @@ namespace RealEstateAPI.Migrations
                     b.ToTable("Properties");
                 });
 
-            modelBuilder.Entity("RealEstate.Domain.Entities.User", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("RealEstate.Domain.Entities.Bookmark", b =>
                 {
                     b.HasOne("RealEstate.Domain.Entities.Property", "Property")
@@ -187,7 +187,7 @@ namespace RealEstateAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RealEstate.Domain.Entities.User", "User")
+                    b.HasOne("RealEstate.Domain.Entities.ApplicationUser", "User")
                         .WithMany("Properties")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -198,6 +198,11 @@ namespace RealEstateAPI.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("RealEstate.Domain.Entities.ApplicationUser", b =>
+                {
+                    b.Navigation("Properties");
+                });
+
             modelBuilder.Entity("RealEstate.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Properties");
@@ -206,11 +211,6 @@ namespace RealEstateAPI.Migrations
             modelBuilder.Entity("RealEstate.Domain.Entities.Property", b =>
                 {
                     b.Navigation("Bookmarks");
-                });
-
-            modelBuilder.Entity("RealEstate.Domain.Entities.User", b =>
-                {
-                    b.Navigation("Properties");
                 });
 #pragma warning restore 612, 618
         }

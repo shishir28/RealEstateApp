@@ -17,7 +17,7 @@ namespace RealEstate.Domain.Entities
         public Category Category { get; set; }
         public Guid UserId { get; set; }
         [JsonIgnore]
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
 
         public ICollection<Bookmark> Bookmarks { get; set; }
     }

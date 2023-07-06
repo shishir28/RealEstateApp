@@ -33,12 +33,12 @@ internal static class GenesisDataState
             new Category { CategoryId = apartmentGuid, Name = "Apartment", ImageUrl = "apartment.png" },
             new Category { CategoryId = penthouseGuid, Name = "Penthouse", ImageUrl = "penthouse.png" }
         };
-    internal static IEnumerable<User> GetUsers() => new User[]
+    internal static IEnumerable<ApplicationUser> GetUsers() => new ApplicationUser[]
         {
-            new User { UserId = firstUserId, Name = "Andrew", Email = "andrew@email.com", Password = "And@1234", Phone = "93524682" },
-            new User { UserId = secondUserId, Name = "Bob", Email = "bob@email.com", Password = "Bb@1234", Phone = "93925611" },
-            new User { UserId = thirdUserId, Name = "John", Email = "john@email.com", Password = "Jn@1234", Phone = "93624627" },
-            new User { UserId = fourthUserId, Name = "Chris", Email = "chris@email.com", Password = "Crs@1234", Phone ="93304682" }
+            new ApplicationUser { ApplicationUserId = firstUserId, Name = "Andrew", Email = "andrew@email.com", Password = "And@1234", Phone = "93524682" },
+            new ApplicationUser { ApplicationUserId = secondUserId, Name = "Bob", Email = "bob@email.com", Password = "Bb@1234", Phone = "93925611" },
+            new ApplicationUser { ApplicationUserId = thirdUserId, Name = "John", Email = "john@email.com", Password = "Jn@1234", Phone = "93624627" },
+            new ApplicationUser { ApplicationUserId = fourthUserId, Name = "Chris", Email = "chris@email.com", Password = "Crs@1234", Phone ="93304682" }
         };
 
     internal static IEnumerable<Property> GetProperties() =>

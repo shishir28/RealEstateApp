@@ -20,9 +20,9 @@ public class GetPropertyDetailQueryHandler : IRequestHandler<GetPropertyDetailQu
 
     public async Task<PropertyDetailVm> Handle(GetPropertyDetailQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetUserByEmail(request.EmailAddress) ?? throw new NotFoundException(nameof(User), request.EmailAddress);
+        var user = await _userRepository.GetUserByEmail(request.EmailAddress) ?? throw new NotFoundException(nameof(ApplicationUser), request.EmailAddress);
         var property = await _propertyRepository.GetByIdAsync(request.PropertyId) ?? throw new NotFoundException(nameof(Property), request.PropertyId);
-        var bookmarks = await _bookmarkRepository.GetActiveBookmarksByUserIdAsync(user.UserId) ?? throw new NotFoundException(nameof(Bookmark), user.UserId);
+        var bookmarks = await _bookmarkRepository.GetActiveBookmarksByUserIdAsync(user.ApplicationUserId) ?? throw new NotFoundException(nameof(Bookmark), user.ApplicationUserId);
         var response = new PropertyDetailVm
         {
             PropertyId = property.PropertyId,

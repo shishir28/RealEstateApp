@@ -32,7 +32,7 @@ namespace RealEstateAPI.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ApplicationUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -40,7 +40,7 @@ namespace RealEstateAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.PrimaryKey("PK_Users", x => x.ApplicationUserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,7 +74,7 @@ namespace RealEstateAPI.Migrations
                         name: "FK_Properties_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "ApplicationUserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 

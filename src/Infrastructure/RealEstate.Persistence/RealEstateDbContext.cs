@@ -10,7 +10,7 @@ public class RealEstateDbContext : DbContext
     }
 
     public DbSet<Category> Categories { get; set; }
-    public DbSet<User> Users { get; set; }
+    public DbSet<ApplicationUser> Users { get; set; }
     public DbSet<Property> Properties { get; set; }
     public DbSet<Bookmark> Bookmarks { get; set; }
 
