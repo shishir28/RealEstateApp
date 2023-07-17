@@ -45,7 +45,7 @@ public class BaseControllerTests : IClassFixture<CustomWebApplicationFactory<Pro
         var loginUser = new Login
         {
             Email = defaultUser!.Email,
-            Password = defaultUser!.Password
+            Password = "And@1234"
         };
         var json = JsonSerializer.Serialize(loginUser, JsonSerializerHelper.DefaultSerializationOptions);
         var content = new StringContent(json, Encoding.UTF8, "application/json");

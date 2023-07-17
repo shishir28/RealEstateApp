@@ -55,8 +55,8 @@ public class UserController : ControllerBase
         {
             access_token = jwt,
             token_type = "bearer",
-            user_id = user.ApplicationUserId,
-            user_name = user.Name
+            user_id = user.Id,
+            user_name = user.UserName
         });
     }
 }

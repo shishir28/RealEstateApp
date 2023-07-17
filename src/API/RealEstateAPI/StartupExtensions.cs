@@ -1,18 +1,37 @@
 ﻿using System.Text;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using RealEstate.Application;
 using RealEstate.Persistence;
 
 namespace RealEstateAPI
 {
+
+
     public static class StartupExtensions
     {
         public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
         {
             builder.Services.AddApplicationServices();
-            builder.Services.AddPersistenceServices(builder.Configuration);
+            var environmentName = builder.Environment?.EnvironmentName;
+
+            var issuer = @"http://localhost/";
+            var audience = @"http://localhost/";
+
+            // dont register database for test set up like integration test or fitness function
+            if (environmentName != "Test")
+                builder.Services.AddPersistenceServices(builder.Configuration);
+
+            if (environmentName == "Test")
+            {
+                builder.Configuration["JWT:Issuer"] = issuer;
+                builder.Configuration["JWT:Audience"] = audience;
+            }
+
+
             builder.Services.AddHealthChecks();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddControllers();
@@ -25,21 +44,23 @@ namespace RealEstateAPI
                         .AllowAnyHeader();
                 });
             });
+
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidAudience = builder.Configuration["JWT:Audience"],
-                    ValidIssuer = builder.Configuration["JWT:Issuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
-                };
-            });
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+           .AddJwtBearer(options =>
+           {
+               options.SaveToken = true;
+               options.TokenValidationParameters = new TokenValidationParameters
+               {
+                   ValidateIssuer = true,
+                   ValidateAudience = true,
+                   ValidateLifetime = true,
+                   //ValidateIssuerSigningKey = true,
+                   ValidAudience = builder.Configuration["JWT:Audience"],
+                   ValidIssuer = builder.Configuration["JWT:Issuer"],
+                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+               };
+           });
+            //Learn more about configuring Swagger / OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             AddSwagger(builder.Services);
             return builder.Build();
         }
@@ -53,7 +74,7 @@ namespace RealEstateAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Real.API v1"));
             }
             app.UseStaticFiles();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             //app.UseRouting();
             app.UseAuthentication();
             // app.UseCustomExceptionHandler();

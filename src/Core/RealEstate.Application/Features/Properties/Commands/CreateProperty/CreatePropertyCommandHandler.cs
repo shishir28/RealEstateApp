@@ -30,7 +30,7 @@ namespace RealEstate.Application.Features.Properties.Commands.CreateProperty
                 ImageUrl = request.ImageUrl,
                 Price = request.Price,
                 IsTrending = false,
-                UserId = user.ApplicationUserId,
+                UserId = Guid.Parse(user.Id),
                 CategoryId = request.CategoryId
             });
             return result.PropertyId;

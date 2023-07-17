@@ -24,7 +24,7 @@ namespace RealEstate.Application.Features.Bookmarks.Queries.GetBookmarksList
             // can be done later
             var user = await _userRepository.GetUserByEmail(request.EmailAddress);
             var properties = await _propertyRepository.GetAllAsync();
-            var bookmarks = await _bookmarkRepository.GetActiveBookmarksByUserIdAsync(user.ApplicationUserId);
+            var bookmarks = await _bookmarkRepository.GetActiveBookmarksByUserIdAsync(Guid.Parse(user.Id));
 
             var result = from b in bookmarks
                          join p in properties on b.PropertyId equals p.PropertyId

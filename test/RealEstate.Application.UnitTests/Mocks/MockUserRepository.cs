@@ -14,7 +14,7 @@ public class MockUserRepository
         mockUserRepository.Setup(repo => repo.AddAsync(It.IsAny<ApplicationUser>()))
         .ReturnsAsync((ApplicationUser user) =>
         {
-            user.ApplicationUserId = userId;
+            user.Id = userId.ToString();
             return user;
         });
 
@@ -23,10 +23,10 @@ public class MockUserRepository
         {
             return new ApplicationUser
             {
-                ApplicationUserId = userId,
+                Id = userId.ToString(),
                 Email = email,
-                Password = "Test0101#",
-                Name = "John Doe"
+                PasswordHash = "Test0101#",
+                UserName = "John Doe"
             }; 
         });
         return mockUserRepository.Object;

@@ -44,7 +44,7 @@ namespace RealEstate.API.FitnessTests.Fixtures
             var loginUser = new Login
             {
                 Email = defaultUser!.Email,
-                Password = defaultUser!.Password
+                Password = defaultUser!.PasswordHash
             };
             var json = JsonSerializer.Serialize(loginUser, JsonSerializerHelper.DefaultSerializationOptions);
             var content = new StringContent(json, Encoding.UTF8, "application/json");

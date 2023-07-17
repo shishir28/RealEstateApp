@@ -1,4 +1,4 @@
-
+﻿
 using RealEstate.Application.Contracts.Persistence;
 using Shouldly;
 using RealEstate.Application.UnitTests.Mocks;
@@ -18,7 +18,6 @@ public class RegisterUserCommandHandlerTests
     {
         var request = new RegisterUserCommand
         {
-            Name = "John Doe",
             Email = "john.doe@gmail.com",
             Password = "Test0101#"
         };

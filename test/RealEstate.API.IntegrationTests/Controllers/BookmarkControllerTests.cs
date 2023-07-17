@@ -29,7 +29,7 @@ public class BookmarkControllerTests : BaseControllerTests
         var bookmarkToAdd = new AddBookmark
         {
             PropertyId = currentProperty!.PropertyId.ToString(),
-            UserId = defaultUser!.ApplicationUserId.ToString()
+            UserId = defaultUser!.Id.ToString()
         };
         var response = await client.PostJsonAsync("/bookmark", bookmarkToAdd);
         response.EnsureSuccessStatusCode();

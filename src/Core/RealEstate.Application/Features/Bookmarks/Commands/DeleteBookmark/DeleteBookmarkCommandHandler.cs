@@ -1,4 +1,4 @@
-using MediatR;
+﻿using MediatR;
 using RealEstate.Application.Contracts.Persistence;
 using RealEstate.Application.Exceptions;
 using RealEstate.Domain.Entities;
@@ -21,7 +21,7 @@ namespace RealEstate.Application.Features.Bookmarks.Commands.DeleteBookmark
             var user = await _userRepository.GetUserByEmail(request.EmailAddress) ?? throw new NotFoundException(nameof(ApplicationUser), request.EmailAddress);
             var bookmarkToDelete = await _bookmarkRepository.GetByIdAsync(request.BookmarkId) ?? throw new NotFoundException(nameof(Bookmark), request.BookmarkId);
 
-            if (bookmarkToDelete.UserId != user.ApplicationUserId)
+            if (bookmarkToDelete.UserId != Guid.Parse(user.Id))
                 throw new BadRequestException("You do not own this bookmark.");
             await _bookmarkRepository.DeleteAsync(bookmarkToDelete);
         }

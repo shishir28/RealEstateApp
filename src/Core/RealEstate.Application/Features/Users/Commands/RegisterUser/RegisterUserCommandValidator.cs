@@ -15,10 +15,6 @@ namespace RealEstate.Application.Features.Users.Commands.RegisterUser
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .MinimumLength(6).WithMessage("{PropertyName} must be at least 6 characters.");
-
-            RuleFor(p => p.Name)
-                .NotEmpty().WithMessage("{PropertyName} is required.")
-                .NotNull();
         }
     }
 }

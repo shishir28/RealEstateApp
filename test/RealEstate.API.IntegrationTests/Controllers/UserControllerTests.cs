@@ -17,7 +17,6 @@ namespace RealEstate.API.IntegrationTests.Controllers
             var client = CreateHttpClient();
             var registerUser = new Register
             {
-                Name = "John Doe",
                 Email = "john.doe@email.com",
                 Password = "P@ssw0rd",
                 Phone = "1234567890"

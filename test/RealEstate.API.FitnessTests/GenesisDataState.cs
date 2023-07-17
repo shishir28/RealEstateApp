@@ -1,4 +1,5 @@
-﻿using RealEstate.Domain.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using RealEstate.Domain.Entities;
 using RealEstate.Persistence;
 
 namespace RealEstate.API.FitnessTests;
@@ -6,6 +7,7 @@ namespace RealEstate.API.FitnessTests;
 // as of now it had duplicate data as RealEstateDBContextSeed but over period of time RealEstateDBContextSeed could have more realistic data and hence wants to keep these two class separate
 internal static class GenesisDataState
 {
+    private static IPasswordHasher<ApplicationUser> _passwordHasher = new PasswordHasher<ApplicationUser>();
     private static readonly Guid houseGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9b");
     private static readonly Guid hotelGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9c");
     private static readonly Guid apartmentGuid = new("d9f9b9b0-5b9a-4b9c-9c9d-9b9b9b9b9b9d");
@@ -33,13 +35,57 @@ internal static class GenesisDataState
             new Category { CategoryId = apartmentGuid, Name = "Apartment", ImageUrl = "apartment.png" },
             new Category { CategoryId = penthouseGuid, Name = "Penthouse", ImageUrl = "penthouse.png" }
         };
-    internal static IEnumerable<ApplicationUser> GetUsers() => new ApplicationUser[]
+    internal static IEnumerable<ApplicationUser> GetUsers()
+    {
+        var userAndrew = new ApplicationUser
         {
-            new ApplicationUser { ApplicationUserId = firstUserId, Name = "Andrew", Email = "andrew@email.com", Password = "And@1234", Phone = "93524682" },
-            new ApplicationUser { ApplicationUserId = secondUserId, Name = "Bob", Email = "bob@email.com", Password = "Bb@1234", Phone = "93925611" },
-            new ApplicationUser { ApplicationUserId = thirdUserId, Name = "John", Email = "john@email.com", Password = "Jn@1234", Phone = "93624627" },
-            new ApplicationUser { ApplicationUserId = fourthUserId, Name = "Chris", Email = "chris@email.com", Password = "Crs@1234", Phone ="93304682" }
+            Id = firstUserId.ToString(),
+            UserName = "andrew@email.com",
+            NormalizedUserName = "ANDREW@EMAIL.COM",
+            Email = "andrew@email.com",
+            NormalizedEmail = "ANDREW@EMAIL.COM",
+            PhoneNumber = "93524682"
         };
+
+        userAndrew.PasswordHash = _passwordHasher.HashPassword(userAndrew, "And@1234");
+
+        var userBob = new ApplicationUser
+        {
+            Id = secondUserId.ToString(),
+            UserName = "bob@email.com",
+            NormalizedUserName = "BOB@EMAIL.COM",
+            Email = "bob@email.com",
+            NormalizedEmail = "BOB@EMAIL.COM",
+            PhoneNumber = "93925611"
+        };
+
+        userBob.PasswordHash = _passwordHasher.HashPassword(userBob, "Bb@1234");
+
+        var userJohn = new ApplicationUser
+        {
+            Id = thirdUserId.ToString(),
+            UserName = "john@email.com",
+            NormalizedUserName = "JOHN@EMAIL.COM",
+            Email = "john@email.com",
+            NormalizedEmail = "JOHN@EMAIL.COM",
+            PhoneNumber = "93624627"
+        };
+
+        userJohn.PasswordHash = _passwordHasher.HashPassword(userJohn, "Jn@1234");
+
+        var userChris = new ApplicationUser
+        {
+            Id = fourthUserId.ToString(),
+            UserName = "chris@email.com",
+            NormalizedUserName = "CHRIS@EMAIL.COM",
+            Email = "chris@email.com",
+            NormalizedEmail = "CHRIS@EMAIL.COM",
+            PhoneNumber = "93304682"
+        };
+
+        userChris.PasswordHash = _passwordHasher.HashPassword(userChris, "Crs@1234");
+        return new ApplicationUser[] { userAndrew, userBob, userJohn, userJohn };
+    }
 
     internal static IEnumerable<Property> GetProperties() =>
              new Property[] {
