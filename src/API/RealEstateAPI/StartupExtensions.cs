@@ -18,19 +18,10 @@ namespace RealEstateAPI
             builder.Services.AddApplicationServices();
             var environmentName = builder.Environment?.EnvironmentName;
 
-            var issuer = @"http://localhost/";
-            var audience = @"http://localhost/";
-
             // dont register database for test set up like integration test or fitness function
+
             if (environmentName != "Test")
                 builder.Services.AddPersistenceServices(builder.Configuration);
-
-            if (environmentName == "Test")
-            {
-                builder.Configuration["JWT:Issuer"] = issuer;
-                builder.Configuration["JWT:Audience"] = audience;
-            }
-
 
             builder.Services.AddHealthChecks();
             builder.Services.AddHttpContextAccessor();
@@ -54,7 +45,6 @@ namespace RealEstateAPI
                    ValidateIssuer = true,
                    ValidateAudience = true,
                    ValidateLifetime = true,
-                   //ValidateIssuerSigningKey = true,
                    ValidAudience = builder.Configuration["JWT:Audience"],
                    ValidIssuer = builder.Configuration["JWT:Issuer"],
                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))

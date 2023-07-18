@@ -31,9 +31,9 @@ public class BaseControllerTests : IClassFixture<CustomWebApplicationFactory<Pro
 
     protected async Task<HttpClient> CreateWebClientForAuthenticatedUser()
     {
-        var accessToken = await LoginDefaultUserAsync();
+        //var accessToken = await LoginDefaultUserAsync();
         var client = CreateHttpClient();
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(FakeAuthenticationHandler.AuthScheme);
         return client;
     }
 

@@ -30,9 +30,10 @@ namespace RealEstate.API.FitnessTests.Fixtures
 
         protected HttpClient CreateWebClientForAuthenticatedUser()
         {
-            var accessToken = LoginDefaultUser();
+            //var accessToken = LoginDefaultUser();
             var client = CreateHttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(FakeAuthenticationHandler.AuthScheme);
             return client;
         }
 
