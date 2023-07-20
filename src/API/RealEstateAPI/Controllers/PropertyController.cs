@@ -11,6 +11,7 @@ using RealEstate.Application.Features.Properties.Commands.CreateProperty;
 
 namespace RealEstateAPI.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class PropertyController : ControllerBase
@@ -28,8 +29,7 @@ public class PropertyController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("PropertyList")]
-    [Authorize]
+    [HttpGet("PropertyList")]    
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<List<PropertyListVm>>> GetProperties(Guid categoryId)
     {
@@ -38,7 +38,6 @@ public class PropertyController : ControllerBase
     }
 
     [HttpGet("SearchProperties", Name = "GetSearchProperties")]
-    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<List<PropertyListVm>>> GetSearchProperties(string address)
     {
@@ -47,7 +46,6 @@ public class PropertyController : ControllerBase
     }
 
     [HttpGet("{propertyId}", Name = "GetPropertyDetail")]
-    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<PropertyDetailVm>> GetPropertyDetail(Guid propertyId)
     {
@@ -57,7 +55,6 @@ public class PropertyController : ControllerBase
     }
 
     [HttpPost(Name = "AddProperty")]
-    [Authorize]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<Guid>> AddProperty(CreatePropertyCommand createPropertyCommand)

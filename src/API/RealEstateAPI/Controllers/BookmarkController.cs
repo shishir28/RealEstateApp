@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Security.Claims;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Features.Bookmarks.Commands.CreateBookmark;
 using RealEstate.Application.Features.Bookmarks.Commands.DeleteBookmark;
@@ -8,6 +9,7 @@ using RealEstate.Application.Features.Bookmarks.Queries.GetBookmarksList;
 
 namespace RealEstateAPI.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class BookmarkController : ControllerBase

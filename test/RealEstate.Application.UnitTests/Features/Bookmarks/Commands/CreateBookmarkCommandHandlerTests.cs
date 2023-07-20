@@ -3,6 +3,7 @@ using RealEstate.Application.Contracts.Persistence;
 using Shouldly;
 using RealEstate.Application.UnitTests.Mocks;
 using RealEstate.Application.Features.Bookmarks.Commands.CreateBookmark;
+
 namespace RealEstate.Application.UnitTests.Features.Bookmarks.Commands;
 
 public class CreateBookmarkCommandHandlerTests
