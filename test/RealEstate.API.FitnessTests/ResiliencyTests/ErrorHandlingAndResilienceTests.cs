@@ -13,7 +13,7 @@ namespace RealEstate.API.FitnessTests.DependencyConstraintTests
         public void Application_Library_Refers_Domain_Library()
         {
             var errorHandlingAndResiliencyScore = CalculateErrorHandlingToNumberOfOperationsRatio();
-            errorHandlingAndResiliencyScore.ShouldBeGreaterThan(0);
+            errorHandlingAndResiliencyScore.ShouldBeGreaterThan(0.80);
         }
 
         private double CalculateErrorHandlingToNumberOfOperationsRatio()

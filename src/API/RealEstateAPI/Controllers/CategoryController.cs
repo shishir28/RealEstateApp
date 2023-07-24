@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.Net;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealEstate.Application.Features.Categories.Queries.GetCategoriesList;
@@ -16,10 +17,19 @@ public class CategoryController : ControllerBase
 
     [HttpGet(Name = "GetAllCategories")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ResponseCache(Duration = 300)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    //[ResponseCache(Duration = 300)]
     public async Task<ActionResult<List<CategoryListVm>>> GetAllCategories()
     {
-        var categories = await _mediator.Send(new GetCategoriesListQuery());
-        return Ok(categories);
+        try
+        {
+            var categories = await _mediator.Send(new GetCategoriesListQuery());
+            return Ok(categories);
+        }
+        catch (Exception ex)
+        {
+            // Handle the exception, log it, and return an appropriate error response
+            return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+        }
     }
 }
